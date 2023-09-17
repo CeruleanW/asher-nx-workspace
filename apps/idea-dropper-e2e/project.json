@@ -1,0 +1,29 @@
+{
+  "name": "idea-dropper-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/idea-dropper-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/idea-dropper-e2e/cypress.json",
+        "devServerTarget": "idea-dropper:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "idea-dropper:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/idea-dropper-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["idea-dropper"]
+}

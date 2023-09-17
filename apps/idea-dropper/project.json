@@ -1,0 +1,63 @@
+{
+  "name": "idea-dropper",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/idea-dropper",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "root": "apps/idea-dropper",
+        "outputPath": "dist/apps/idea-dropper"
+      },
+      "configurations": {
+        "production": {},
+        "development": {
+          "outputPath": "apps/idea-dropper"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/next:server",
+      "options": {
+        "buildTarget": "idea-dropper:build",
+        "dev": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "idea-dropper:build:production",
+          "dev": false
+        },
+        "development": {
+          "buildTarget": "idea-dropper:build:development",
+          "dev": true
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "export": {
+      "executor": "@nrwl/next:export",
+      "options": {
+        "buildTarget": "idea-dropper:build:production"
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/apps/idea-dropper"],
+      "options": {
+        "jestConfig": "apps/idea-dropper/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/idea-dropper/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  },
+  "tags": []
+}

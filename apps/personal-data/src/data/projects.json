@@ -1,0 +1,238 @@
+{
+  "projects": [
+    {
+      "title": "Kaidu Configuration (Lite)",
+      "subtitle": "A mobile app for configuring Kaidu scanners in a user friendly and efficient way",
+      "image": "https://i.imgur.com/vLsK29W.png",
+      "techs": ["React Native", "Redux", "Bluetooth Low Energy", "React Native Elements", "Styled components"],
+      "id": "8de597a4-a337-11ec-b909-0242ac12000",
+      "live": "https://apps.apple.com/ca/app/kaidu-configuration-lite/id1598671114",
+      "type": "Work Project",
+      "content": {
+        "introduction": "A new Kaidu scanner needs an accessible Wi-Fi, MQTT configuration, a registered client account and other information to start working and sending data. This app will help users to set up the Kaidu scanners with less burden and time.",
+        "goal": "Enable users to configure Kaidu scanners in less than 5 minutes, involving communicating with both the server and the BLE device",
+        "spotlight": "This fully featured app is designed, built and maintained by me",
+        "problem": [
+          "Error handling is important for this app. The configuration workflow is simple for users. Many steps are automatically completed by the app. Different kinds of errors and problems could happen after it started. As Bluetooth communication is instable by its nature, the app must help users to recover from those errors."
+        ],
+        "lesson": [
+          "For the data fetching part, using a library like React Query or SWR, to provides solutions for loading state, error handling, caching, and re-validation is very convenient. It can help us to provide a seamless experience with less loading disruption on the user interface", "However, they are designed for HTTP so it's not good to use them for Bluetooth communication. For Bluetooth, the app is not always connected to a BLE device and when it is connected, displaying outdated cached data will mislead users"
+        ]
+      },
+      "illustrations": [
+        "https://i.imgur.com/NoEAxTE.png",
+        "https://i.imgur.com/U2RyffX.png",
+        "https://i.imgur.com/teRKOlv.png",
+        "https://i.imgur.com/U5DNFln.png",
+        "https://i.imgur.com/M8bq6w4.png",
+        "https://i.imgur.com/HtxI0gk.png"
+      ]
+    },
+    {
+      "title": "Font Preview Tool",
+      "subtitle": "An embeddable React component measuring the height of address signs for various text & fonts.",
+      "image": "https://i.imgur.com/tfgUrCg.png",
+      "techs": [
+        "React.js",
+        "Canvas API",
+        "Konva.js"
+      ],
+      "id": "850f5998-928f-11ec-b909-0242ac120002",
+      "type": "Work Project",
+      "repo": "https://github.com/CeruleanW/preview-tool",
+      "live": "https://houselettersigns.com/pages/design-preview",
+      "content": {
+        "introduction": "My client want to put a preview tool on their Shopify website to help their users to preview the fonts and sizes of residential address signs.",
+        "goal": "To demonstrate and preview how the residential address signs would look like, so that the users can have a better understanding of the design and make a good choice of the font & size. The height should be determined by the length, font family and text content.",
+        "spotlight": "In Web development, we usually set the font size in CSS to assign a height to the text, then the browser will decide the width based on the font size and the number of characters. However, in this case, we need to let the width decides the height and measure each character instead of paragraph. This is where WebGL comes in.",
+        "problem": [
+          "The sizes I can get from regular HTML text elements are not accurate enough", "A major requirement of this project is to provide approximate height for the address text and font. However, the browser usually do it in the opposite way. They also want to measure the height of text by its content. For example, 'H' should be higher than 'a'.", "To solve this problem, we need to render the text via Canvas and then we can access more information about the measured text instead of only measureing the paragraph block. To let the length determine the height, I wrote a function to calculate the length for given font sizes and change the font size before it's displayed."
+        ],
+        "lesson": [
+          "Although HTML is more like a printing tool than a designing tool, Canvas and WebGL do enable us to perform more granular operations on the User Interface",
+          "Clients may not fully realize what they really need and what technical guys can do. Therefore, the Agile method could be quite useful and helps us to have better communication sometimes."
+        ]
+      },
+      "illustrations": [
+        "https://i.imgur.com/bfu04yI.png",
+        "https://i.imgur.com/91Lhyjn.png"
+      ]
+    },
+    {
+      "title": "Plant Light Meter (tentative)",
+      "subtitle": "A mobile app measures the light intensity to help you find the appropriate location for your indoor plants",
+      "image": "https://media.githubusercontent.com/media/CeruleanW/large-static-files/master/illustrations/plm01.png",
+      "techs": [
+        "React Native",
+        "Java (Android)",
+        "MongoDB Realm",
+        "Agile/Scrum",
+        "Highcharts",
+        "React Navigation"
+      ],
+      "id": "365dc79d-45eb-48d1-ad2c-33023b029a33",
+      "type": "Work Project",
+      "repo": "https://github.com/CeruleanW/plant-light-meter",
+      "content": {
+        "introduction": "People get depressed without enough sunlight, so does a plant. With the help of Plant Light Meter, you can measure the illuminance value, collect records for multipel locations, get an estimation for the daily light level. You will find the land of promised sunshine for your plants. There are many light meter apps can measure the light, but this App enables users keep track of all the records it stored. It's not only a light meter, but a indoor plant management helper.",
+        "goal": "Let the user get the daily light intensity level and determine if it is a suitable location for indoor planting",
+        "spotlight": "I built the Minimal Viable Product from scratch in 3 weeks, without any prior technology knowledge in Mobile Development nor React Native",
+        "problem": [
+          "I need to get required light intensity data from the mobile phone at first, but cannot find a good library in React Native can do it. I did research about the camera API, ambient light sensor API and tried a unpopular library but it didn't work. Therefore, I create a native module written in Java on Android and successfully get readings from the ambient light sensor then emit as event messages to React Native",
+          "Build failures occured frequently. Troubleshooting those failures was quite time consuming. Without much prerequisite knowledge of Android development and Gradle, I usually copy & google the error message, then try the suggestions one by one. After many times trials for different issues, I noticed that a default action could be uninstalling previous version and clean build cache. If it doesn't work, investigate the stack trace and hypothesize potential causes and adjust searching keywords by that could reduce the number and time of trials."
+        ],
+        "lesson": [
+          "Being cautious before commit to a new framework/library. In case of JavaScript packages, use npmtrends.com to find statistic data and alternatives beforehand",
+          "Understand theories and stack trace is critical for troubleshooting"
+        ]
+      },
+      "illustrations": [
+        "https://media.githubusercontent.com/media/CeruleanW/large-static-files/master/plant-lighe-meter-demo1.gif",
+        "https://media.githubusercontent.com/media/CeruleanW/large-static-files/master/plant-lighe-meter-demo1.gif",
+        "https://media.githubusercontent.com/media/CeruleanW/large-static-files/master/illustrations/plm01.png"
+      ]
+    },
+    {
+      "title": "Google Photos Search Enhancer",
+      "subtitle": "Search phrases more than general keywords in the descriptions and filenames in your Google Photos. Support fuzzy search",
+      "image": "https://media.githubusercontent.com/media/CeruleanW/large-static-files/master/gpse-01.png",
+      "techs": [
+        "React.js",
+        "RESTful API",
+        "Material UI",
+        "Webpack",
+        "IndexedDB",
+        "Fuse.js"
+      ],
+      "id": "0c6d7ee9-fbca-477f-8f0d-2f1eb50963f0",
+      "type": "Personal Project",
+      "live": "https://google-photos-search-enhancer.netlify.app/",
+      "repo": "https://github.com/CeruleanW/nx-workspace/tree/master/apps/google-photos-search-enhancer",
+      "content": {
+        "introduction": "Google Photos Search Enhancer is an application which requests data from Google Photos API, stores them in the client-end storage and search through it. This project improves my skills of dealing with REST APIs, Asynchronous JavaScript (AJAX) and React.js.",
+        "goal": "As a Google Photos user, I expect to find my photos once I put a special filename on the photo or add some description on it. It was frustrating that if you search in Chinese, some words are searchable while most are not. I want to build a app to target the photos by the text in it.",
+        "spotlight": "Although the UI looks simple and not so appealing, this is a application solves a real problem of mine. It's not a Toy project.",
+        "problem": [
+          "Handling the Promises in JavaScript really troubled me a lot. I was not quite familiar with the callback functions either, for I didn't encounter them in Java. I spend a large amount of time on reading materials to learn AJAX and Promises. The app should only start searching when the API calls are fuifilled. This requires a good state management",
+          "Besides this, Google Photos API requires OAuth 2.0 authorization. It doesn't provide a API to let you search through the library, and only returns one page of item per request. To solve the problem, I use IndexedDB to store all the data from responses on the client and search through it afterwards"
+        ],
+        "lesson": [
+          "The unidirectional data flow of React requires us to design the component architecture and state management at the beginning. Without state management solutions as React Context or Redux, it is very troublesome to pass data from chlid components to an ancestor."
+        ]
+      },
+      "illustrations": [
+        "https://media.githubusercontent.com/media/CeruleanW/large-static-files/master/illustrations/gpse01.gif",
+        "https://media.githubusercontent.com/media/CeruleanW/large-static-files/master/illustrations/gpse02.png",
+        "https://media.githubusercontent.com/media/CeruleanW/large-static-files/master/illustrations/gpse04.png"
+      ]
+    },
+    {
+      "title": "Church Education Website",
+      "subtitle": "A small website developed for the sunday school of Zion Alliance Church",
+      "image": "https://media.githubusercontent.com/media/CeruleanW/large-static-files/master/cew-01.png",
+      "type": "Independent Project",
+      "techs": ["React.js", "Material UI", "React Router", "RESTful API"],
+      "live": "https://cew-5d8o.onrender.com",
+      "repo": "https://github.com/zioncma/church-eduction-website/tree/master",
+      "content": {
+        "introduction": "CEW is a static course website I built for the sunday school of Zion Alliance Church, to allow church members to access the course announcements and resources during the pandemic conveniently. It has three main pages for announcement, general courses, and a special lecture serie respectively.",
+        "goal": "The UI of the existing main website was not made for navigating to and displaying various items, which is courses in this case. In fact, it was like hiding these resources in the corner. As we will be mostly interacting remotely in 2021, we need to make the online education resources more accessible",
+        "spotlight": "A complete functional real website meet the requirements of its users",
+        "problem": [
+          "Requirements elicitation is the hardest part of this process. Discussing with the client is worthy but not easy. And It's also hard to confirm what data will or won't be privided, what data format should be used with non-techinal people.",
+          "To help the communication, I drew the sketch by paper and pen to show the layout and developed mockup prototype for further discussion, both of which helped a lot for clarifying the requirements."
+        ],
+        "lesson": [
+          "I learned a lot of React Router from this project as it is my first React project requires routing to various pages, such as basic Switch, Route, and using Hooks to get URL parameters. When deploying the website, we need to redirect all requests to index.html because the site is just a Single Page Application acting like having multi-pages.",
+          "The process of requirements specification and system design cannot be directly reflected on the end product, but it is fundamental and critical for the end product"
+        ]
+      },
+      "id": "eae9e67b-e921-499c-afb2-3137a9867171",
+      "illustrations": [
+        "https://media.githubusercontent.com/media/CeruleanW/large-static-files/master/illustrations/cew01.png",
+        "https://media.githubusercontent.com/media/CeruleanW/large-static-files/master/illustrations/cew02.png",
+        "https://media.githubusercontent.com/media/CeruleanW/large-static-files/master/illustrations/cew03.png"
+      ]
+    },
+    {
+      "title": "Landing Page - EXP | CON",
+      "subtitle": "A responsive landing page rich with graphic effects and animations",
+      "image": "https://media.githubusercontent.com/media/CeruleanW/large-static-files/master/landing-page-exp-01.png",
+      "techs": [
+        "React.js",
+        "Styled components",
+        "Next.js",
+        "HTML5",
+        "CSS3",
+        "TailwindCSS"
+      ],
+      "id": "0c6d7ee9-fbca-477f-8f0d-2f1eb502300",
+      "type": "Personal Project",
+      "live": "https://landing-page-example.vercel.app/",
+      "repo": "https://github.com/CeruleanW/landing-page-example",
+      "content": {
+        "introduction": "A responsive landing page rich with graphic effects and animations",
+        "goal": "To improve skills in JavaScript & CSS animations, Canvas, and WebGL",
+        "spotlight": "A Displacement effect image carousel implemented by curtain.js",
+        "problem": [
+          "Got stuck when trying to implement the image carousel transition effect."
+        ],
+        "lesson": [
+          "Knowing the needed visual effect name is critical for achieving it, but finding the right name by searching or skimming references is hard and inefficient. The best way would be asking people who knows it. Then I can do the research by myself.",
+          "Proper abstracting and componentizing should be done at an early-stage. Following a best practice or good pattern will greatly enhance the developing efficiency"
+        ]
+      },
+      "illustrations": [
+        "https://media.githubusercontent.com/media/CeruleanW/large-static-files/master/landing-page-exap-demo1.gif",
+        "https://media.githubusercontent.com/media/CeruleanW/large-static-files/master/landing-page-exp-demo2.gif",
+        "https://media.githubusercontent.com/media/CeruleanW/large-static-files/master/landing-page-exp-demo3.gif"
+      ]
+    },
+    {
+      "title": "Landing Page - Broken Dream Café",
+      "subtitle": "A responsive design landing page for a non-existing restaurant, using React.js, Semantic UI React, and CSS Module",
+      "image": "https://media.githubusercontent.com/media/CeruleanW/large-static-files/master/broken-dream-01.png",
+      "techs": ["React.js", "Semantic UI React", "CSS Module", "HTML", "CSS"],
+      "id": "0c6d7ee9-fbca-477f-8f0d-2f1eb50283f0",
+      "type": "Personal Project",
+      "live": "https://ceruleanw.github.io/Broken-dream-cafe/",
+      "repo": "https://github.com/CeruleanW/Broken-dream-cafe",
+      "content": {
+        "introduction": "A landing page implemented Responsive design, CSS animation ",
+        "goal": "To learn React.js and CSS3 by creating a landing page.",
+        "spotlight": "",
+        "problem": [
+          "For me, the Component-based architecture of React and the extensive use of constant is significantly different from Object-Oriented Programming nature of Java. When I first began this, I put different things here and there and don't know how to make a component reusable and isolated. As I grasp more about React.js later, I know more about how to encapsulate CSS, JSX and JavaScript functions to make the components reusable."
+        ],
+        "lesson": [
+          "Take some time on designing the architecture and testing is important. Take the advantages of appropriate UI frameworks and libraries can greatly reduce the headache."
+        ]
+      },
+      "illustrations": [
+        "https://media.githubusercontent.com/media/CeruleanW/large-static-files/master/illustrations/bc01.png",
+        "https://media.githubusercontent.com/media/CeruleanW/large-static-files/master/illustrations/bc02.png",
+        "https://media.githubusercontent.com/media/CeruleanW/large-static-files/master/illustrations/bc03.png"
+      ]
+    }
+  ],
+  "carouselProjects": [
+    {
+      "title": "Plant Light Meter (placeholder)",
+      "subtitle": "A mobile app measures the light intensity to help you find the appropriate location for your indoor plants",
+      "image": "plm.png",
+      "id": "365dc79d-45eb-48d1-ad2c-33023b029a33"
+    },
+    {
+      "title": "Google Photos Search Enhancer",
+      "subtitle": "Search phrases more than general keywords in the descriptions and filenames in your Google Photos. Support fuzzy search",
+      "image": "gpse.png",
+      "id": "0c6d7ee9-fbca-477f-8f0d-2f1eb50963f0"
+    },
+    {
+      "title": "Church Education Website",
+      "subtitle": "A website developed for the sunday school of Zion Alliance Church",
+      "image": "cew.png",
+      "id": "eae9e67b-e921-499c-afb2-3137a9867171"
+    }
+  ]
+}

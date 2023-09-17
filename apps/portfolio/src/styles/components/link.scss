@@ -1,0 +1,14 @@
+@import '../abstracts//palette.scss';
+
+
+.no-decoration {
+  text-decoration: none;
+  &:visited {
+    text-decoration: none;
+    color: $contrast-text,
+  }
+  // &::after {
+  //   content: ' ';
+  //   flex: 1 0;
+  // }
+}

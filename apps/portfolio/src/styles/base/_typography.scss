@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import '../abstracts/variables';
+@import '../abstracts/palette';
+
+.title {
+  font-family: $first-font;
+}
+
+h1,
+h2 {
+  @extend .title;
+}
+
+p, span, li {
+  font-size: 1rem;
+}
+
+.nav-title {
+  font-family: Exo, 'sans-serif';
+  font-size: 1.55rem;
+  color: $contrast-text;
+}

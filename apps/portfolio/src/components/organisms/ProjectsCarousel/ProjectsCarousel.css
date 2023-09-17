@@ -1,0 +1,23 @@
+.carousel__dot--selected {
+  background-color: rgb(12, 114, 209) !important;
+}
+
+.carousel__dot {
+  width: 16pt;
+  height: 16pt;
+  border-radius: 50%;
+  border-width: 0;
+  margin: 0 2pt;
+}
+
+/* overwrite tailwindcss defautlt */
+button.carousel__dot { 
+  background-color: #ccc;
+}
+
+@media only screen and (min-width: 768px) {
+  .carousel__dot {
+    width: 12pt;
+    height: 12pt;
+  }
+}

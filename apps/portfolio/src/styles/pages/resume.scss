@@ -1,0 +1,157 @@
+@import '../abstracts/variables';
+@import '../abstracts/palette';
+@import '../layout/layouts';
+@import '../abstracts/mixins';
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: $resume-first;
+}
+
+p {
+  font-family: $resume-second;
+  color: $text-primary-light;
+  font-size: 1rem;
+}
+
+section {
+  page-break-before: auto;
+  break-inside: auto;
+}
+
+.header-name {
+  // font-family: $resume-first;
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 2.5rem;
+}
+
+.position-title {
+  @include sec-color;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.subtitle {
+  @include sec-color;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.list-item-icon {
+  @include sec-color;
+  font-size: 0.75rem;
+}
+
+.list-item-typo {
+  font-weight: 600;
+  color: $text-primary-light;
+  line-height: 1.5rem;
+  font-size: 0.85rem;
+}
+
+.section-title {
+  border-bottom: 3px solid $primary;
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 1.8rem;
+  page-break-after: avoid;
+}
+
+.skill-item {
+  @include chip;
+  border-radius: 8px;
+  border: 2px solid gray;
+  line-height: 1.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.filled-seccolor {
+  @include sec-color;
+}
+
+.inner-section {
+  border-bottom: 1px dashed lighten($primary, 55%);
+  padding-bottom: 0.7rem;
+  padding-top: 1rem;
+  &:first-of-type {
+    padding-top: 0;
+    page-break-before: avoid;
+  }
+  &:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  // page-break-inside: avoid;
+}
+
+.job {
+  border-bottom: 1px dashed lighten($primary, 55%);
+  padding-bottom: 0.7rem;
+  padding-top: 1rem;
+  &:first-of-type {
+    padding-top: 0;
+  }
+  &:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.light-text {
+  color: lighten($primary, 25%);
+}
+
+@page {
+  margin: 1cm;
+  transform: scale(0.7);
+}
+
+.print-button {
+  padding: 0.5rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  font-size: 1.2rem;
+  border-radius: 32px;
+}
+
+// button styles
+.button {
+  user-select: none;
+  transition: all 150ms linear;
+  text-align: center;
+  white-space: nowrap;
+  text-decoration: none !important;
+  text-transform: capitalize;
+
+  color: #fff;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  box-shadow: 2px 5px 10px var(--color-smoke);
+
+  &:hover {
+    transition: all 150ms linear;
+    opacity: 0.85;
+  }
+
+  &:active {
+    transition: all 150ms linear;
+    opacity: 0.75;
+  }
+
+  &:focus {
+    outline: 1px dotted #959595;
+    outline-offset: -4px;
+  }
+}
+
+.button.-blue {
+  color: #ffffff;
+  background: #416dea;
+}
