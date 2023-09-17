@@ -1,0 +1,7 @@
+{
+  "name": "google-photos-search-enhancer",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/google-photos-search-enhancer/src",
+  "projectType": "application",
+  "tags": []
+}

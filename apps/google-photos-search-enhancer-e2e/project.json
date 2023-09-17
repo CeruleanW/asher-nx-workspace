@@ -1,0 +1,31 @@
+{
+  "name": "google-photos-search-enhancer-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/google-photos-search-enhancer-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/google-photos-search-enhancer-e2e/cypress.json",
+        "devServerTarget": "google-photos-search-enhancer:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "google-photos-search-enhancer:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "apps/google-photos-search-enhancer-e2e/**/*.{js,ts}"
+        ]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["google-photos-search-enhancer"]
+}

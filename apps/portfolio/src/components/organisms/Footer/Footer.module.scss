@@ -1,0 +1,29 @@
+$link-color: white;
+$bg-color: #2C2C2C;
+$upper-space: 30px;
+
+.footer {
+  position: sticky;
+  background-color: $bg-color;
+  min-height: 3rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  width: 100%;
+  bottom: 0;
+  margin-top: $upper-space; //leave some space to the content
+  z-index: 65535;
+}
+
+.footerLink {
+  color: $link-color;
+}
+
+.footerLink:visited {
+  color: $link-color;
+}
+
+.text {
+  text-align: center;
+  font-family: "Work Sans", sans-serif;
+  color: $link-color;
+}

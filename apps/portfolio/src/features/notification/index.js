@@ -1,0 +1,1 @@
+export const EMAILAPIURL = "https://email-service-cerulean.herokuapp.com/portfolio";

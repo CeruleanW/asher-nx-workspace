@@ -1,0 +1,30 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowJs": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "rootDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "@gpse/*": ["apps/google-photos-search-enhancer/*"],
+      "@idea": ["apps/idea-dropper/src/index.ts"],
+      "@idea/*": ["apps/idea-dropper/src/*"],
+      "@portfolio/*": ["apps/portfolio/src/*"],
+      "@root/shared": ["libs/shared/index.ts"],
+      "@root/shared/*": ["libs/shared/src/*"],
+      "@root/shared/components": ["libs/shared/src/components/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
