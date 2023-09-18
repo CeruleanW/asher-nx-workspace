@@ -71,7 +71,7 @@ export function getAverageByProp(arr: any[], prop: string): number {
 export function truncateFalseValuesInArray(arr: any) {
   let firstZeroTailIndex = arr.length;
   for (let i = arr.length - 1; i >= 0; i--) {
-    if (!Boolean(arr[i])) {
+    if (!arr[i]) {
       firstZeroTailIndex = i;
       i--;
     } else {
@@ -79,4 +79,67 @@ export function truncateFalseValuesInArray(arr: any) {
     }
   }
   return arr.slice(0, firstZeroTailIndex);
+}
+
+/**
+ * @description filter the array of objects by the given property,
+ * @param  {any[]} rows
+ * @param  {string} propertyName
+ * @param  {} propertyValue if the value is 'all', return all the objects
+ */
+export function filterByProperty(
+  rows: any[],
+  propertyName: string,
+  propertyValue: any
+): any[] {
+  if (propertyValue.toUpperCase() === 'ALL') {
+    return rows;
+  }
+  const filtered = rows.filter((row) => row[propertyName] === propertyValue);
+  return filtered;
+}
+
+
+/**
+ * Filters an array of objects using custom predicates.
+ *
+ * @param  {Array}  array: the array to filter
+ * @param  {Object} filters: an object with the filter criteria
+ * @return {Array}
+ */
+export function filterArray(array: any[], filters) {
+  if (!array) {
+    return array;
+  }
+
+  const filterKeys = Object.keys(filters);
+  return array.filter((item) => {
+    // validates all filter criteria
+    return filterKeys.every((key) => {
+      // ignores non-function predicates
+      if (typeof filters[key] !== 'function') return true;
+      return filters[key](item[key]);
+    });
+  });
+  /**
+   * The method `filterArray()` has the following signature:
+   *
+   * `function filterArray<TInput = any>(array: TInput[], filters: IFilters) => TInput[]`
+   *
+   * Where the function receives an array as the first argument, and a plain object
+   * describing the fields to filter as the last argument.
+   * The function returns an array of the same type as the input array.
+   *
+   * The signature of the filters arguments is the following:
+   *
+   * `interface IFilters {
+   *   [key: string]: (value: any) => boolean;
+   * }`
+   *
+   * Where the `filters` argument is an object that contains a `key: string`
+   * and its value is a function with the value of the property to evaluate.
+   * As the function predicate is evaluated using the `Array.prototype.every()` method,
+   * then it must return a boolean value, which will determine if the item
+   * must be included or not in the filtered array.
+   */
 }

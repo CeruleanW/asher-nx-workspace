@@ -24,3 +24,30 @@ export const handle = (promise: Promise<any>) => {
     .then((data) => [data, undefined])
     .catch((error) => Promise.resolve([undefined, error]));
 };
+
+export function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+
+export async function callAsyncFnWithErrorTolerance(fn, maxErrorDepth = 10) {
+  let errorDepth = 0;
+  let result, resultErr;
+  while (errorDepth < maxErrorDepth) {
+    [result, resultErr] = await handle(fn());
+    // await sleep(200);
+    if (result) {
+      break;
+    } else {
+      console.error('No result');
+      console.error(resultErr?.message);
+      errorDepth++;
+      resultErr = null;
+    }
+  }
+  if (errorDepth >= 10) {
+    throw new Error('Max error depth reached when writing firmware chunks');
+  }
+
+  return result;
+}
