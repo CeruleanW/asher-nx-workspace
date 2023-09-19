@@ -39,6 +39,7 @@
     "@nrwl/next": "15.9.2",
     "@react-pdf/renderer": "^2.0.8",
     "@reduxjs/toolkit": "1.9.0",
+    "@sentry/nextjs": "^7.69.0",
     "@sentry/react": "^7.58.1",
     "@szhsin/react-menu": "^3.3.0",
     "autoprefixer": "10.4.13",
