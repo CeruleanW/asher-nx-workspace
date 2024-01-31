@@ -3,7 +3,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { selectIsUpdateModalShown } from '../providers/redux/globalSlice';
+import { selectIsUpdateModalShown } from '../../providers/redux/globalSlice';
 import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 const TEXT_MESSAGE = 'Updating local data... Please wait for a while';
 
 /**
- *
+ * Loader
  */
 export function UpdateLocalDataBackDrop() {
   const classes = useStyles();

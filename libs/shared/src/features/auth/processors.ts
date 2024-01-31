@@ -5,7 +5,7 @@ import { JWT } from './types';
 import { setToLocalStorage, getLocalStorage } from '../local-storage';
 import { removeAxiosAuthHeader } from '../axios';
 
-export function isTokenExpired(exp: number): boolean {
+export function isUnixTimeBeforeNow(exp: number): boolean {
   const now = Math.floor(getNow().getTime() / 1000);
   const result = exp < now;
   result && console.warn('Token expired!', exp, now);
@@ -35,13 +35,29 @@ export function clearAuthTokenInLocalStorage(): void {
   setTokenToLocalStorage(null);
 }
 
+/**
+ * return true if the JWT token string is valid and not expired
+ */
 export function checkIsTokenValid(token: string): boolean {
   try {
     const tokenObj: any = jwt_decode(token);
     const { exp } = tokenObj || { exp: true };
-    return exp && !isTokenExpired(exp);
+    return exp && !isUnixTimeBeforeNow(exp);
   } catch (error) {
     console.warn('checkIsTokenValid gets error', error);
+    return false;
+  }
+}
+
+/**
+ * return true if the JWT token string is valid and not expired
+ */
+export function checkIsGoogleTokenObjValid(tokenObj: any): boolean {
+  try {
+    const { expires_at, access_token, token_type } = tokenObj || { exp: true };
+    return access_token && !isUnixTimeBeforeNow(expires_at);
+  } catch (error) {
+    console.warn('checkIsGoogleTokenObjValid gets error', error);
     return false;
   }
 }

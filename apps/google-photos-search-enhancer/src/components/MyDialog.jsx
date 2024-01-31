@@ -7,7 +7,7 @@ import {
   Button,
 } from '@material-ui/core';
 
-export default function MyDialog({open, children, onAgreed, onClose, ...optionals}) {
+export function MyDialog({open, children, onAgreed, onClose, ...optionals}) {
 
   const handleIsAgreed = (bool) => () => {
     onAgreed(bool);

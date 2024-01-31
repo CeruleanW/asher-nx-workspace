@@ -1,43 +1,46 @@
-// import React from 'react';
+//@ts-nocheck
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import { oauth2 } from '../features/g-api';
-import { getTimeStamp, setUpdateTime, clearData, INDEXEDDB_LOCALMEDIAITEMS_KEY } from '../features/client-storage';
-import { requestAllMediaItems } from '../features/g-api';
-import { setAxiosDefaultAuthHeader } from '../features/request';
+import { oauth2 } from '../../features/g-api';
+import { getTimeStamp, setUpdateTime, clearData, INDEXEDDB_LOCALMEDIAITEMS_KEY } from '../../features/client-storage';
+import { requestAllMediaItems } from '../../features/g-api';
+import { setAxiosDefaultAuthHeader } from '../../features/request';
 import { Button } from '@material-ui/core';
-import { useAccessUpdate, useAccess } from './Context/AccessContext';
-import { useFeedbackUpdate } from './Context/FeedbackContext';
+// import { useAccessUpdate, useAccess } from '../Context/AccessContext';
+import { useFeedbackUpdate } from '../Context/FeedbackContext';
 import { useSWRConfig } from 'swr'
+import {useGoogleAuthToken} from '@root/shared/domain/auth';
 
 /**
  *
  */
 export function GoogleBtn(props) {
   const { onSetLastUpdateTime, ...rest } = props;
+  const [token, isTokenValid, setToken, remove] = useGoogleAuthToken();
 
   // Hooks
   const { mutate } = useSWRConfig();
   const updateBackdrop = useFeedbackUpdate().handleBackdrop;
   const updateTextMessage = useFeedbackUpdate().handleTextMessage;
-  const updateIsLogined = useAccessUpdate().handleIsLogined;
-  const isLogined = useAccess().isLogined;
 
   /**
    * get the access token from Google
    */
   const login = (response) => {
-    const { accessToken } = response || {};
-    if (accessToken) {
-      console.debug('get login token: ', accessToken);
-      updateIsLogined(true);
+    const { accessToken, tokenObj } = response || {};
+    console.debug('get login response: ', response);
+    if (accessToken && tokenObj) {
+      console.debug('get login token: ', tokenObj);
+      //updateIsLogined(true);
       setAxiosDefaultAuthHeader(accessToken);
+      setToken(tokenObj);
       // start request
       updateMediaItemsInStorage();
     }
   };
 
   const logout = () => {
-    updateIsLogined(false);
+    //updateIsLogined(false);
+    remove();
 
     // clear search results
     clearData();
@@ -51,7 +54,7 @@ export function GoogleBtn(props) {
 
 
   /**
-   * should update the media items in local storage
+   * should update the media items to client storage
    */
   async function updateMediaItemsInStorage(): Promise<void> {
     console.log('fetchMediaItems is called');
@@ -79,14 +82,15 @@ export function GoogleBtn(props) {
       }
     } catch (error) {
       console.error(error?.messsage);
+    } finally {
+      updateBackdrop(false);
+      updateTextMessage('');
     }
-    updateBackdrop(false);
-    updateTextMessage('');
   }
 
   return (
     <>
-      {isLogined ? (
+      {isTokenValid ? (
         <GoogleLogout
           clientId={oauth2.clientID}
           onLogoutSuccess={logout}
@@ -111,7 +115,7 @@ export function GoogleBtn(props) {
           cookiePolicy='single_host_origin'
           responseType='code,token'
           scope={oauth2.scopes[1]}
-          isSignedIn={true}
+          isSignedIn={isTokenValid}
           render={(renderProps) => (
             <Button
               variant='contained'

@@ -1,14 +1,19 @@
 import MUIAppBar from '@material-ui/core/AppBar';
 import { useEffect, useState } from 'react';
 import { checkNotFirstVisit, getTimeStamp } from '../../features/client-storage';
-import { RandomBtn } from '../../features/random/components/RandomBtn';
-import { GoogleBtn } from '../GoogleBtn';
-import HelpModal from '../HelpModal';
-import SearchBar from '../SearchBar';
-import { Title } from '../Title';
+import { RandomBtn } from '../../domain/random/RandomBtn';
+import { GoogleBtn } from '../organism/GoogleBtn';
+import HelpModal from '../organism/HelpModal';
+import SearchBar from '../molecule/SearchBar';
+import { Title } from '../molecule/Title';
+import {useGoogleAuthToken} from '@root/shared/domain/auth';
 
-
+/**
+ *
+ */
 export function AppBar({ onOpenDrawer, ...optionals }) {
+
+  const [token, isReady, ...rest] = useGoogleAuthToken();
   // States
   const [lastUpdateTime, setLastUpdateTime] = useState('');
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Skeleton from '@mui/material/Skeleton';
-import { PhotoList } from './PhotoList';
+import { PhotoList } from '../PhotoList';
 
 export const useStyles = makeStyles((theme) => ({
   root: {

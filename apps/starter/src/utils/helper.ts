@@ -159,13 +159,6 @@ export function isFilledArray(obj: any) {
   );
 }
 
-export function getKBOfString(value: string): number {
-  if (!value) {
-    return 0;
-  }
-  return Math.floor(new TextEncoder().encode(value).length / 1024);
-}
-
 export function replaceEmptyStringWithNull<T>(obj: T): T {
   const result = { ...obj };
   Object.keys(result).forEach((key) => {

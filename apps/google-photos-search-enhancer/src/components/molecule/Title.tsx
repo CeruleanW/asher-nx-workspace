@@ -4,7 +4,6 @@ import Typography from '@material-ui/core/Typography';
 import { IconButton } from '@material-ui/core';
 
 export function Title({ onClick, ...rest }) {
-
   return (
     <>
       <IconButton
