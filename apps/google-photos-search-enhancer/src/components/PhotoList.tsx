@@ -1,7 +1,11 @@
 import React from 'react';
 import Masonry from 'react-masonry-css';
-import { useStyles } from './Photos';
+import { useStyles } from './molecule/Photos';
+import { isFilledArray } from '@root/shared/utils';
 
+/**
+ *
+ */
 export function PhotoList(props) {
   const { photoUrls } = props;
 
@@ -17,6 +21,10 @@ export function PhotoList(props) {
   const handleClick = (url) => {
     window.open(url);
   };
+
+  if (!isFilledArray(photoUrls)) {
+    return null
+  }
 
   return (
     <Masonry

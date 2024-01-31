@@ -1,7 +1,7 @@
 // import React from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
 import { makeStyles } from '@material-ui/core/styles';
-import { useFeedback, useFeedbackUpdate } from './Context/FeedbackContext';
+import { useFeedback, useFeedbackUpdate } from '../Context/FeedbackContext';
 import { Alert } from '@root/shared/components/atomics/Alert';
 
 const useStyles = makeStyles((theme) => ({
@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 /**
- *
+ * Warning for nothing matched
  */
 export function NoMatchedSnackbar(props) {
   const classes = useStyles();

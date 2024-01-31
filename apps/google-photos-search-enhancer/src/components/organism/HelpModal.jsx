@@ -29,7 +29,10 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function HelpModal(props) {
+/**
+ *
+ */
+export function HelpModal(props) {
   const classes = useStyles();
   const BodyPara = (props) => {
     return (
@@ -84,3 +87,5 @@ export default function HelpModal(props) {
     </Modal>
   );
 }
+
+export default HelpModal

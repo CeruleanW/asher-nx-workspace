@@ -1,7 +1,7 @@
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppState } from './store';
-import { SnackbarMessage } from '../types';
+import { SnackbarMessage } from '../../features/notification/types';
 
 const initialSnackbarMessage: SnackbarMessage = {
   isOpen: false,

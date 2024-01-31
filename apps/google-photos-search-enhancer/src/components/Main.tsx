@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import { AppBar } from './NavBar/AppBar';
-import PhotosContainer from './Photos';
-import { UpdateLocalDataBackDrop } from './UpdateLocalDataBackDrop';
+import PhotosContainer from './molecule/Photos';
+import { UpdateLocalDataBackDrop } from './molecule/UpdateLocalDataBackDrop';
 import { LinearProgress } from '@material-ui/core/';
 import { useFeedback } from './Context/FeedbackContext';
 import { makeStyles } from '@material-ui/core/styles';
-import { NoMatchedSnackbar } from './NoMatchedSnackbar';
+import { NoMatchedSnackbar } from './molecule/NoMatchedSnackbar';
 import { CenterBackground } from './molecule/CenterBackground';
-import { isFilledArray } from '../utils';
+import { isFilledArray } from '@root/shared/utils';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectDisplayedPhotos } from '../providers/redux/photosSlice';
 import { selectSnackbar, resetSnackbar } from '../providers/redux/globalSlice';
-import { UpdateResultSnackbar } from './UpdateResultSnackbar';
+import { UpdateResultSnackbar } from '../domain/notification/UpdateResultSnackbar';
 import { Drawer } from './Drawer';
 
 // @ts-ignore

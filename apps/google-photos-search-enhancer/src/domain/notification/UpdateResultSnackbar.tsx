@@ -1,7 +1,7 @@
 import React from 'react';
 import { Snackbar } from '@material-ui/core';
 import MuiAlert from '@mui/material/Alert';
-import { SnackbarMessage } from '../providers/types';
+import { SnackbarMessage } from '../../features/notification/types';
 
 export function UpdateResultSnackbar({
   onClose,

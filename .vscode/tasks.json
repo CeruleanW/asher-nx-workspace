@@ -1,0 +1,16 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"problemMatcher": [],
+      "label": "Start GPSE",
+      "type": "shell",
+      "command": "yarn",
+      "args": ["start:gpse"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+		}
+	]
+}

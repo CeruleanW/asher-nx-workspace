@@ -3,14 +3,14 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
-import { searchForItems } from '../features/client-storage';
-import { useAccess } from './Context/AccessContext';
-import { useFeedbackUpdate } from './Context/FeedbackContext';
+import { searchForItems } from '../../features/client-storage';
+import { useAccess } from '../Context/AccessContext';
+import { useFeedbackUpdate } from '../Context/FeedbackContext';
 import { useDispatch } from 'react-redux';
-import { requestMediaItemsByIds } from '../features/media-items';
-import { setDisplayedPhotos } from '../providers/redux/photosSlice';
+import { requestMediaItemsByIds } from '../../features/media-items';
+import { setDisplayedPhotos } from '../../providers/redux/photosSlice';
 import styled from 'styled-components';
-import { useIndexedDB } from '../features/client-storage';
+import { useIndexedDB } from '../../features/client-storage';
 
 const InputContainer = styled.div`
   margin-bottom: 0.5rem;
@@ -126,7 +126,7 @@ export default function SearchBar() {
     }
   };
 
-  const isDisabled = !Boolean(localMediaKeys && localMediaKeys.length) || !isLogined;
+  const isDisabled = !Boolean(localMediaKeys && localMediaKeys.length);
 
   return (
     <>

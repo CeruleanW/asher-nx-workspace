@@ -14,10 +14,10 @@ import {
   setIsUpdateDataModalShown,
   setSnackbar,
 } from '../../providers/redux/globalSlice';
-import { SnackbarMessage } from '../../providers';
+import { SnackbarMessage } from '../../features/notification';
 import { requestAllMediaItems } from '../../features/g-api';
 // import { getNow } from '@root/shared/features/date';
-import MyDialog from '../MyDialog';
+import { MyDialog } from '../MyDialog';
 import { Typography } from '@material-ui/core';
 
 const updateMsg: SnackbarMessage = {
@@ -68,13 +68,6 @@ export function DrawerList() {
       dispatch(setIsUpdateDataModalShown(false));
     }
     setIsUpdateRequestAgreed(undefined);
-
-    // requestAllMediaItems()
-    //   .then((fulfilled) => {
-    //   })
-    //   .finally(() => {
-    //   });
-    // setIsUpdateRequestAgreed(undefined);
   };
 
   // Update local data when update request is confrimed
@@ -91,10 +84,7 @@ export function DrawerList() {
     await clearData();
 
     setTimeStamp(false);
-    // setLastUpdateTime(getTimeStamp());
-
     // show success snackbar
-
     dispatch(setSnackbar(clearMsg));
   };
 

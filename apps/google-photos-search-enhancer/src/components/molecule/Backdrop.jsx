@@ -3,7 +3,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { useFeedback } from './Context/FeedbackContext';
+import { useFeedback } from '../Context/FeedbackContext';
 
 const useStyles = makeStyles((theme) => ({
   backdrop: {
@@ -15,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+/**
+ * Loader
+ */
 export default function SimpleBackdrop() {
   const classes = useStyles();
   const isBackdropOpened = useFeedback().isBackdropOpened;

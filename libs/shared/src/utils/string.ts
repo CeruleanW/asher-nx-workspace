@@ -24,3 +24,11 @@ export function makeID(length) {
   }
   return result;
 }
+
+
+export function getKBOfString(value: string): number {
+  if (!value) {
+    return 0;
+  }
+  return Math.floor(new TextEncoder().encode(value).length / 1024);
+}
