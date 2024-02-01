@@ -31,9 +31,6 @@ The code is available under the [MIT license](LICENSE).
 - [React Google Login](https://www.npmjs.com/package/react-google-login)
 - [idb](https://github.com/jakearchibald/idb) - data from your Google Photos account will be stored in IndexedDB
 
-```bash
-npm install --save-dev @material-ui/core @material-ui/icons react-google-login idb react-masonry-css react-sticky-footer
-```
 
 ## What it will do
 - sign in your google account and request data from Google Photos

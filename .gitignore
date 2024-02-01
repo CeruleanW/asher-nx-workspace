@@ -45,3 +45,6 @@ node_modules
 
 # Sentry Auth Token
 .sentryclirc
+
+#nx
+.nx
