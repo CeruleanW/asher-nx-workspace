@@ -1,6 +1,5 @@
 import DialogTitle from '@mui/material/DialogTitle';
 import { Button, TextField, Typography } from '@root/shared/components';
-import { Controller, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useSWRConfig } from 'swr';
 import { addBox, ALL_BOX, CreateBoxDTO, deleteBox } from '../../features/idea-server';

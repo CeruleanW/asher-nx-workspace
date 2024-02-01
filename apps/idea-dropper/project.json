@@ -10,7 +10,8 @@
       "defaultConfiguration": "production",
       "options": {
         "root": "apps/idea-dropper",
-        "outputPath": "dist/apps/idea-dropper"
+        "outputPath": "dist/apps/idea-dropper",
+        "postcssConfig": "apps/idea-dropper/postcss.config.js"
       },
       "configurations": {
         "production": {},
