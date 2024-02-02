@@ -1,5 +1,5 @@
 import React from 'react';
-import { Snackbar } from '@material-ui/core';
+import { Snackbar } from '@root/shared/components/atomics/SnackBar';
 import MuiAlert from '@mui/material/Alert';
 import { SnackbarMessage } from '../../features/notification/types';
 
@@ -13,7 +13,7 @@ export function UpdateResultSnackbar({
   [key: string]: any;
 }) {
 
-  const {isOpen, message, severity} = content || {};
+  const { isOpen, message, severity } = content || {};
 
   return (
     <Snackbar

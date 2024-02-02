@@ -1,7 +1,7 @@
 // import React from 'react';
-import Backdrop from '@material-ui/core/Backdrop';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import { Typography } from '@material-ui/core';
+import { Backdrop } from '@root/shared/components/atomics/Backdrop';
+import { Loader } from '@root/shared/components/atomics/Loading';
+import { Typography2 } from '@root/shared/components/atomics/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { selectIsUpdateModalShown } from '../../providers/redux/globalSlice';
 import { useSelector } from 'react-redux';
@@ -27,8 +27,8 @@ export function UpdateLocalDataBackDrop() {
 
   return (
     <Backdrop className={classes.backdrop} open={isBackdropOpened}>
-      <CircularProgress color='inherit' />
-      <Typography className={classes.leftPadding}>{TEXT_MESSAGE}</Typography>
+      <Loader color='inherit' />
+      <Typography2 className={classes.leftPadding}>{TEXT_MESSAGE}</Typography2>
     </Backdrop>
   );
 }

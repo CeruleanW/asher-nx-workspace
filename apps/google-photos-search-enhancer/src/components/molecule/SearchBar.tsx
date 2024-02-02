@@ -2,7 +2,7 @@ import { useState } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
+import { Button } from '@root/shared/components/atomics/Button';
 import { searchForItems } from '../../features/client-storage';
 import { useAccess } from '../Context/AccessContext';
 import { useFeedbackUpdate } from '../Context/FeedbackContext';
@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
 /**
  *
  */
-export default function SearchBar() {
+export function SearchBar() {
   // Hooks
   const classes = useStyles();
   const dispatch = useDispatch();

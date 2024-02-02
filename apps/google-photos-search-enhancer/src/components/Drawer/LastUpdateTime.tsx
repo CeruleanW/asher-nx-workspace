@@ -1,4 +1,4 @@
-import Typography from '@material-ui/core/Typography';
+import {Typography2} from '@root/shared/components/atomics/Typography';
 // import React from 'react';
 import { format } from '@root/shared/features/date';
 
@@ -8,7 +8,7 @@ import { format } from '@root/shared/features/date';
 export function LastUpdateTime({ lastUpdateTime, ...optionals }) {
   return (
     <>
-      <Typography
+      <Typography2
         variant='subtitle1'
         display='block'
         gutterBottom
@@ -16,7 +16,7 @@ export function LastUpdateTime({ lastUpdateTime, ...optionals }) {
       >
         <div>Last Update:</div>
         {lastUpdateTime ? format(new Date(lastUpdateTime), 'yyyy-MM-dd HH:mm:ss') : 'No data'}
-      </Typography>
+      </Typography2>
     </>
   )
 }

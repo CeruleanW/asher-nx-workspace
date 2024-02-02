@@ -1,4 +1,5 @@
 import CircularProgress from '@mui/material/CircularProgress';
+import MuiLinearProgress from '@mui/material/LinearProgress';
 
 /**
  *
@@ -17,4 +18,8 @@ export function CenteredLoader(props) {
       <Loader />
     </div>
   );
+}
+
+export function LinearProgress(props) {
+  return <MuiLinearProgress {...props} />
 }

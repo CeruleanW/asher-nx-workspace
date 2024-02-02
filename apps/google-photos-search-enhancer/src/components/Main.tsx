@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { AppBar } from './NavBar/AppBar';
-import PhotosContainer from './molecule/Photos';
+import { PhotosContainer } from './molecule/Photos';
 import { UpdateLocalDataBackDrop } from './molecule/UpdateLocalDataBackDrop';
-import { LinearProgress } from '@material-ui/core/';
+import { LinearProgress } from '@root/shared/components/atomics/Loading';
 import { useFeedback } from './Context/FeedbackContext';
 import { makeStyles } from '@material-ui/core/styles';
 import { NoMatchedSnackbar } from './molecule/NoMatchedSnackbar';

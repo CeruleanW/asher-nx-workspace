@@ -1,6 +1,8 @@
 import React from 'react';
-import { Typography, Box, Container, Divider } from '@material-ui/core';
-import Modal from '@material-ui/core/Modal';
+import Container from '@mui/material/Container';
+import { Divider } from '@root/shared/components/atomics/Divider';
+import { Typography2 } from '@root/shared/components/atomics/Typography';
+import { BaseModal } from '@root/shared/components/atomics/Modal';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -26,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
   footNote: {
     marginTop: theme.spacing(1),
-  }
+  },
 }));
 
 /**
@@ -36,56 +38,64 @@ export function HelpModal(props) {
   const classes = useStyles();
   const BodyPara = (props) => {
     return (
-      <Typography color='textSecondary' className={classes.body + ' ' + props.className} align={props.align}>
+      <Typography2
+        color="textSecondary"
+        className={classes.body + ' ' + props.className}
+        align={props.align}
+      >
         {props.children}
-      </Typography>
+      </Typography2>
     );
   };
 
   return (
-    <Modal open={props.open} onClose={props.onClose}>
+    <BaseModal open={props.open} onClose={props.onClose}>
       <Container className={classes.root}>
-        <Box>
-          <Typography
-            color='textPrimary'
-            variant='h4'
+        <div>
+          <Typography2
+            color="textPrimary"
+            variant="h4"
             className={classes.title}
           >
             Google Photos Search Enhancer
-          </Typography>
+          </Typography2>
           <Divider />
-          <Box>
-            <Typography color='textSecondary' className={classes.firstPara}>
+          <div>
+            <Typography2 color="textSecondary" className={classes.firstPara}>
               This app will help you to search through the descriptions and
-              filenames in your Google Photos Library. Click the 'LOGIN' button to start!
-            </Typography>
+              filenames in your Google Photos Library. Click the 'LOGIN' button
+              to start!
+            </Typography2>
             <ul>
               <li>
                 <BodyPara>
-                  <strong>Data:</strong> All data in this application are stored locally. None of
-                  them would be uploaded to any server.
+                  <strong>Data:</strong> All data in this application are stored
+                  locally. None of them would be uploaded to any server.
                 </BodyPara>
               </li>
               <li>
                 <BodyPara>
-                  <strong>Update:</strong> Please click the 'Update' button to get the latest
-                  change in your Google Photos Library.
+                  <strong>Update:</strong> Please click the 'Update' button to
+                  get the latest change in your Google Photos Library.
                 </BodyPara>
               </li>
               <li>
                 <BodyPara>
-                  <strong>Edit:</strong> Click the photo in the search result, then you can edit
-                  it in your Google Photos
+                  <strong>Edit:</strong> Click the photo in the search result,
+                  then you can edit it in your Google Photos
                 </BodyPara>
               </li>
             </ul>
-          </Box>
-          <Divider/>
-          <BodyPara align='right' className={classes.footNote}>For further help, please send email to yyang.techie#gmail.com &#40;replace # by @&#41;</BodyPara>
-        </Box>
+          </div>
+          <Divider />
+          <BodyPara align="right" className={classes.footNote}>
+            For further help, please send email to yyang.techie#gmail.com
+            &#40;replace # by @&#41;
+          </BodyPara>
+        </div>
       </Container>
-    </Modal>
+    </BaseModal>
   );
 }
 
-export default HelpModal
+export default HelpModal;

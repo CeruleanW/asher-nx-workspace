@@ -1,6 +1,6 @@
 import React from 'react';
 import Masonry from 'react-masonry-css';
-import { useStyles } from './molecule/Photos';
+import { useStyles } from './Photos';
 import { isFilledArray } from '@root/shared/utils';
 
 /**

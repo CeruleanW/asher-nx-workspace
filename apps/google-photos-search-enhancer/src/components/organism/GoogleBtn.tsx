@@ -4,11 +4,11 @@ import { oauth2 } from '../../features/g-api';
 import { getTimeStamp, setUpdateTime, clearData, INDEXEDDB_LOCALMEDIAITEMS_KEY } from '../../features/client-storage';
 import { requestAllMediaItems } from '../../features/g-api';
 import { setAxiosDefaultAuthHeader } from '../../features/request';
-import { Button } from '@material-ui/core';
+import { Button } from '@root/shared/components/atomics/Button';
 // import { useAccessUpdate, useAccess } from '../Context/AccessContext';
 import { useFeedbackUpdate } from '../Context/FeedbackContext';
-import { useSWRConfig } from 'swr'
-import {useGoogleAuthToken} from '@root/shared/domain/auth';
+import { useSWRConfig } from 'swr';
+import { useGoogleAuthToken } from '@root/shared/domain/auth';
 
 /**
  *

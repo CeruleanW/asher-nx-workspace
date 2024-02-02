@@ -1,4 +1,4 @@
-import { Button } from '../../components/atomic/Button';
+import { Button } from '@root/shared/components/atomics/Button';
 import { getRandomKeys } from '../../features/random/foo';
 import { getValue, useIndexedDB } from '../../features/client-storage';
 import { LocalMediaItem } from '../../features/g-api/types';

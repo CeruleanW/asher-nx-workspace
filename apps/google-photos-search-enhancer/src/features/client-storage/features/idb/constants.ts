@@ -1,2 +1,2 @@
 export const dbName = 'db';
-export const objectStoreName = 'localMediaItems';
+export const OBJECT_STORE_NAME = 'localMediaItems';

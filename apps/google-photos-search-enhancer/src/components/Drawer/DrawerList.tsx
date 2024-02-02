@@ -17,8 +17,9 @@ import {
 import { SnackbarMessage } from '../../features/notification';
 import { requestAllMediaItems } from '../../features/g-api';
 // import { getNow } from '@root/shared/features/date';
-import { MyDialog } from '../MyDialog';
-import { Typography } from '@material-ui/core';
+import { MyDialog } from '../organism/MyDialog';
+import {Typography2} from '@root/shared/components/atomics/Typography';
+
 
 const updateMsg: SnackbarMessage = {
   message: 'Update completed!',
@@ -116,10 +117,10 @@ export function DrawerList() {
         onClose={() => setOpenUpdateAlertDialog(false)}
         onAgreed={(isAgreed) => setIsUpdateRequestAgreed(isAgreed)}
       >
-        <Typography color="textPrimary">
+        <Typography2 color="textPrimary">
           Depending on the quantity of items in your Google Photos Library, the
           updating time could be up to a few minutes. Are you sure to update?
-        </Typography>
+        </Typography2>
       </MyDialog>
     </>
   );

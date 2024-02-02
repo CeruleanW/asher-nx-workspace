@@ -1,12 +1,12 @@
-import MUIAppBar from '@material-ui/core/AppBar';
+import MUIAppBar from '@mui/material/AppBar';
 import { useEffect, useState } from 'react';
 import { checkNotFirstVisit, getTimeStamp } from '../../features/client-storage';
 import { RandomBtn } from '../../domain/random/RandomBtn';
 import { GoogleBtn } from '../organism/GoogleBtn';
 import HelpModal from '../organism/HelpModal';
-import SearchBar from '../molecule/SearchBar';
+import { SearchBar } from '../molecule/SearchBar';
 import { Title } from '../molecule/Title';
-import {useGoogleAuthToken} from '@root/shared/domain/auth';
+import { useGoogleAuthToken } from '@root/shared/domain/auth';
 
 /**
  *

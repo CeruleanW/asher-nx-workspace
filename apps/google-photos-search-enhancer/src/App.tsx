@@ -1,5 +1,5 @@
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Footer from './components/atomic/Footer';
+import {Footer} from './components/atomic/Footer';
 import { Main } from './components/Main';
 import { CompositeProvider } from './providers'
 
