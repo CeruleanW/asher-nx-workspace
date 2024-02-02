@@ -9,8 +9,7 @@ import {
   FaPlusCircle,
 } from 'react-icons/fa'; // https://react-icons.github.io/react-icons/
 import { GoNote } from "react-icons/go";
-
-
+import { IoMenu } from "react-icons/io5";
 import MuiCloseIcon from '@mui/icons-material/Close';
 
 export function Icon({ name, ...rest }) {
@@ -32,3 +31,5 @@ export function Icon({ name, ...rest }) {
 }
 
 export const CloseIcon = MuiCloseIcon;
+
+export const MenuIcon = IoMenu;

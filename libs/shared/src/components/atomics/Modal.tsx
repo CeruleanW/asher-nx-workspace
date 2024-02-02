@@ -21,6 +21,8 @@ export function Dialog({ show, onHide, ...optionals }) {
   );
 }
 
+export const BaseModal = MuiModal;
+
 /**
  *
  */

@@ -1,6 +1,5 @@
-import { IconButton } from '@material-ui/core';
-import Divider from '@material-ui/core/Divider';
-import MUIDrawer from '@material-ui/core/Drawer';
+import { IconButton } from '@root/shared/components/atomics/IconButton';
+import MUIDrawer from '@mui/material/Drawer';
 import { useTheme } from '@material-ui/core/styles';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -8,6 +7,7 @@ import { DrawerList } from './DrawerList';
 import { LastUpdateTime } from './LastUpdateTime';
 import styled from 'styled-components';
 import { getTimeStamp } from '../../features/client-storage';
+import { Divider } from '@root/shared/components/atomics/Divider';
 
 const StyledContainer = styled.div`
   min-width: 16rem;

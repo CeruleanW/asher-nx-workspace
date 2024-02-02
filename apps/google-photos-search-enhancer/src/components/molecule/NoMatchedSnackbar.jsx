@@ -1,5 +1,5 @@
 // import React from 'react';
-import Snackbar from '@material-ui/core/Snackbar';
+import { Snackbar } from '@root/shared/components/atomics/SnackBar';
 import { makeStyles } from '@material-ui/core/styles';
 import { useFeedback, useFeedbackUpdate } from '../Context/FeedbackContext';
 import { Alert } from '@root/shared/components/atomics/Alert';

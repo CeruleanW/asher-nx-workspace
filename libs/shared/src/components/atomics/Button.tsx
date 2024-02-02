@@ -12,7 +12,7 @@ const ResetBg = styled(MuiButton) <{ variant: string }>`
 /**
  *
  */
-export const Button = ensuredForwardRef((props: any, ref: any) => {
+export const Button = ensuredForwardRef<any, any>((props: any, ref: any) => {
   const { className, variant = 'contained', ...rest } = props;
   return (
     <>
