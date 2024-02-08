@@ -8,7 +8,6 @@ import { isFilledArray } from '@root/shared/utils';
  */
 export function PhotoList(props) {
   const { photoUrls } = props;
-
   const classes = useStyles();
   const breakpointColumnsObj = {
     default: 6,

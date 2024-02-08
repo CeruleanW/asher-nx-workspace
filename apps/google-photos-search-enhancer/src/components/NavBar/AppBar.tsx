@@ -32,8 +32,8 @@ export function AppBar({ onOpenDrawer, ...optionals }) {
   const handleSetLastUpdateTime = () => setLastUpdateTime(getTimeStamp());
 
   return (
-    <div>
-      <MUIAppBar position="sticky">
+    <div >
+      <MUIAppBar position="sticky" className="p-2">
         <div className="flex items-stretch justify-between flex-wrap max-w-full space-y-2 md:space-y-0 sm:gap-x-2 px-4 my-2">
           <div className="flex items-center flex-grow">
             <Title onClick={() => onOpenDrawer(true)} />
