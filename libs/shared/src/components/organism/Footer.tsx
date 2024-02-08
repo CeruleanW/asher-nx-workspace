@@ -1,6 +1,5 @@
 import StickyFooter from 'react-sticky-footer'; // Library Link: https://www.npmjs.com/package/react-sticky-footer
-import { Container, Typography } from '@material-ui/core';
-// import { styled } from '@mui/material/styles';
+import { Typography2 } from '../atomics';
 import styled from 'styled-components';
 
 const A = styled.a`
@@ -31,16 +30,16 @@ export function Footer({ ...optionals }) {
         font: "300 1rem 'Lora', serif",
       }}
     >
-      <Container>
-        <Typography align="center">
+      <div>
+        <Typography2 align="center">
           {' '}
           Copyright &copy; 2020 Developed with ❤️ by
           <A href="https://github.com/CeruleanW">
             {' '}
             Asher Yang
           </A>
-        </Typography>
-      </Container>
+        </Typography2>
+      </div>
     </StickyFooter>
   );
 }

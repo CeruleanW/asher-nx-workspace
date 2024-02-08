@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
-import InputBase from '@material-ui/core/InputBase';
+import InputBase from '@mui/material/InputBase';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@root/shared/components/atomics/Button';
 import { searchForItems } from '../../features/client-storage';
@@ -130,7 +133,32 @@ export function SearchBar() {
 
   return (
     <>
-      <InputContainer className={`min-w-fit max-w-full relative space-y-2 bg-slate-100/20 hover:bg-slate-100/30 rounded mr-2`}>
+      <div className={`min-w-fit max-w-full relative bg-slate-100/20 hover:bg-slate-100/30 rounded mr-2`}>
+        <TextField
+          // label="TextField"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+          }}
+          placeholder='Search…'
+          classes={{
+            root: classes.inputRoot,
+            input: classes.inputInput,
+          }}
+          inputProps={{ 'aria-label': 'search' }}
+          onChange={handleKeywordChange}
+          onKeyUp={handleSearchKeyUp}
+          autoFocus={true}
+          margin='none'
+          size="small"
+          variant="outlined"
+          fullWidth
+        />
+      </div>
+      {/* <InputContainer className={`min-w-fit max-w-full relative space-y-2 bg-slate-100/20 hover:bg-slate-100/30 rounded mr-2`}>
         <div className={classes.searchIcon}>
           <SearchIcon />
         </div>
@@ -146,7 +174,7 @@ export function SearchBar() {
           onKeyUp={handleSearchKeyUp}
           autoFocus={true}
         />
-      </InputContainer>
+      </InputContainer> */}
       <div className={'flex items-center'}>
         <Button variant='contained' onClick={handleClick} disabled={isDisabled}>
           Search

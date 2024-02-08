@@ -1,6 +1,6 @@
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
 import React, { useState, useEffect } from 'react';
 import {
   clearData,
@@ -18,7 +18,7 @@ import { SnackbarMessage } from '../../features/notification';
 import { requestAllMediaItems } from '../../features/g-api';
 // import { getNow } from '@root/shared/features/date';
 import { MyDialog } from '../organism/MyDialog';
-import {Typography2} from '@root/shared/components/atomics/Typography';
+import { Typography2 } from '@root/shared/components/atomics/Typography';
 
 
 const updateMsg: SnackbarMessage = {

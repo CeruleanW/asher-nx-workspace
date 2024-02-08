@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Skeleton from '@mui/material/Skeleton';
+// import Skeleton from '@mui/material/Skeleton';
 import { PhotoList } from './PhotoList';
+import { CenterBackground } from '../molecule/CenterBackground';
+import { isFilledArray } from '@root/shared/utils';
 
 export const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,6 +39,9 @@ export const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/**
+ *
+ */
 export function PhotosContainer(props) {
   const { list, ...rest } = props;
 
@@ -45,22 +49,17 @@ export function PhotosContainer(props) {
   const classes = useStyles();
 
   // States
-  const [loadingPhotos, setLoadingPhotos] = useState(true);
   const displayedPhotos = list;
 
-  // TODO: because async requests after searching for displaying, we have to wait
-  // should fix the timeout logic later
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoadingPhotos(false);
-    }, 1200);
 
-    return () => clearTimeout(timer);
-  }, []);
+  if (!isFilledArray(displayedPhotos)) {
+    return <CenterBackground />
+  }
 
   return (
     <div className={classes.root}>
-      {loadingPhotos ? (
+      <PhotoList photoUrls={displayedPhotos} {...props} />
+      {/* {loadingPhotos ? (
         <Grid container spacing={1}>
           {displayedPhotos?.map((photoItem, index) => (
             <Grid
@@ -78,7 +77,7 @@ export function PhotosContainer(props) {
         </Grid>
       ) : (
         <PhotoList photoUrls={displayedPhotos} {...props} />
-      )}
+      )} */}
     </div>
   );
 }

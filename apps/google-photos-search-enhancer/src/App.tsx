@@ -1,5 +1,5 @@
-import CssBaseline from '@material-ui/core/CssBaseline';
-import {Footer} from './components/atomic/Footer';
+import CssBaseline from '@mui/material/CssBaseline';
+import { Footer } from '@root/shared/components/organism/Footer';
 import { Main } from './components/Main';
 import { CompositeProvider } from './providers';
 import '@fontsource/roboto/300.css';
