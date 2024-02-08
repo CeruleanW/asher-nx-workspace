@@ -1,7 +1,0 @@
-{
-  "name": "starter",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/starter/src",
-  "projectType": "application",
-  "tags": []
-}
