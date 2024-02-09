@@ -4,7 +4,7 @@ import { PhotosContainer } from './molecule/Photos';
 import { UpdateLocalDataBackDrop } from './molecule/UpdateLocalDataBackDrop';
 import { LinearProgress } from '@root/shared/components/atomics/Loading';
 import { useFeedback } from './Context/FeedbackContext';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@root/shared/styles';
 import { NoMatchedSnackbar } from './molecule/NoMatchedSnackbar';
 import { CenterBackground } from './molecule/CenterBackground';
 import { isFilledArray } from '@root/shared/utils';
@@ -40,9 +40,9 @@ export const useStyles = makeStyles((theme) => ({
     maxWidth: '500px',
     maxHeight: '500px',
     width: '40%',
-    [theme.breakpoints.up('md')]: {
-      width: '20%',
-    },
+    // [theme.breakpoints.up('md')]: {
+    //   width: '20%',
+    // },
   },
 }));
 

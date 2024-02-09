@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@mui/material/InputBase';
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@root/shared/styles';
 import { Button } from '@root/shared/components/atomics/Button';
 import { searchForItems } from '../../features/client-storage';
 import { useAccess } from '../Context/AccessContext';
@@ -94,7 +93,7 @@ export function SearchBar() {
 
     // send keyword to search media items from IndexedDB
     // get the image URLs
-    const fulfilled = await searchForItems(keyword);
+    const fulfilled: any[] = await searchForItems(keyword);
     const ids = fulfilled.map((data) => data?.item?.id);
     if (!ids?.length) {
       // display a error feedback
@@ -146,7 +145,6 @@ export function SearchBar() {
           placeholder='Search…'
           classes={{
             root: classes.inputRoot,
-            input: classes.inputInput,
           }}
           inputProps={{ 'aria-label': 'search' }}
           onChange={handleKeywordChange}

@@ -4,7 +4,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogActions,
-} from '@material-ui/core';
+} from '@mui/material';
 import { Button } from '@root/shared/components/atomics/Button';
 
 export function MyDialog({open, children, onAgreed, onClose, ...optionals}) {

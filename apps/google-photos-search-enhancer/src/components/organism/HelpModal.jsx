@@ -3,7 +3,7 @@ import Container from '@mui/material/Container';
 import { Divider } from '@root/shared/components/atomics/Divider';
 import { Typography2 } from '@root/shared/components/atomics/Typography';
 import { BaseModal } from '@root/shared/components/atomics/Modal';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@root/shared/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -1,9 +1,9 @@
 //@ts-nocheck
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import { oauth2 } from '../../features/g-api';
+import { OAUTH2 } from '../../features/g-api';
 import { getTimeStamp, setUpdateTime, clearData, INDEXEDDB_LOCALMEDIAITEMS_KEY } from '../../features/client-storage';
 import { requestAllMediaItems } from '../../features/g-api';
-import { setAxiosDefaultAuthHeader } from '../../features/request';
+import { setAxiosDefaultAuthHeader, sendPost } from '../../features/request';
 import { Button } from '@root/shared/components/atomics/Button';
 // import { useAccessUpdate, useAccess } from '../Context/AccessContext';
 import { useFeedbackUpdate } from '../Context/FeedbackContext';
@@ -25,7 +25,7 @@ export function GoogleBtn(props) {
   /**
    * get the access token from Google
    */
-  const login = (response) => {
+  const login = async (response) => {
     const { accessToken, tokenObj } = response || {};
     console.debug('get login response: ', response);
     if (accessToken && tokenObj) {
@@ -34,7 +34,7 @@ export function GoogleBtn(props) {
       setAxiosDefaultAuthHeader(accessToken);
       setToken(tokenObj);
       // start request
-      updateMediaItemsInStorage();
+      await updateMediaItemsInStorage();
     }
   };
 
@@ -92,7 +92,7 @@ export function GoogleBtn(props) {
     <>
       {isTokenValid ? (
         <GoogleLogout
-          clientId={oauth2.clientID}
+          clientId={OAUTH2.clientID}
           onLogoutSuccess={logout}
           buttonText='Logout'
           // onFailure={handleLogoutFailure}
@@ -109,12 +109,12 @@ export function GoogleBtn(props) {
         />
       ) : (
         <GoogleLogin
-          clientId={oauth2.clientID}
+          clientId={OAUTH2.clientID}
           onSuccess={login}
           onFailure={handleLoginFailure}
           cookiePolicy='single_host_origin'
           responseType='code,token'
-          scope={oauth2.scopes[1]}
+          scope={OAUTH2.scopes[1]}
           isSignedIn={isTokenValid}
           render={(renderProps) => (
             <Button

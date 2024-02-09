@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 import Masonry from 'react-masonry-css';
 import { useStyles } from './Photos';
