@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@root/shared/styles';
 // import Skeleton from '@mui/material/Skeleton';
 import { PhotoList } from './PhotoList';
 import { CenterBackground } from '../molecule/CenterBackground';

@@ -13,7 +13,7 @@ export const CREDENTIALS = {
 }
 
 
-export const oauth2 = {
+export const OAUTH2 = {
   clientID: CREDENTIALS.web.client_id,
   projectId: CREDENTIALS.web.project_id,
   authUri: CREDENTIALS.web.auth_uri,

@@ -2,7 +2,7 @@
 import { Backdrop } from '@root/shared/components/atomics/Backdrop';
 import { Loader } from '@root/shared/components/atomics/Loading';
 import { Typography2 } from '@root/shared/components/atomics/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@root/shared/styles';
 import { selectIsUpdateModalShown } from '../../providers/redux/globalSlice';
 import { useSelector } from 'react-redux';
 
@@ -28,7 +28,7 @@ export function UpdateLocalDataBackDrop() {
   return (
     <Backdrop className={classes.backdrop} open={isBackdropOpened}>
       <Loader color='inherit' />
-      <Typography2 className={classes.leftPadding}>{TEXT_MESSAGE}</Typography2>
+      <Typography2 className={classes.leftPadding} sx={{paddingLeft: '15px',}}>{TEXT_MESSAGE}</Typography2>
     </Backdrop>
   );
 }
