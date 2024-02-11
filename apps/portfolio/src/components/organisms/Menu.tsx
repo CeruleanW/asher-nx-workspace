@@ -1,19 +1,12 @@
 import React, { useState } from 'react';
-import {
-  IconButton,
-  MenuItem,
-  Popper,
-  Grow,
-  Paper,
-  ClickAwayListener,
-  MenuList,
-  Box,
-} from '@material-ui/core';
-// import {} from '@root/shared/components/atomics/Paper';
-import MenuIcon from '@material-ui/icons/Menu';
+import { MenuItem, MenuList } from '@root/shared/components/molecule';
+import { MenuIcon2, IconButton, Paper, Popper } from '@root/shared/components/atomics';
+import { ClickAwayListener } from '@root/shared/components/headless';
+import { Grow } from '@root/shared/features/animation';
+
 import { Link } from 'react-router-dom';
 
-export default function Menu(props) {
+export function Menu(props) {
   // const [anchorEl, setAnchorEl] = useState(null);
   const { routes, pageTitles } = props;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -46,7 +39,7 @@ export default function Menu(props) {
         aria-controls={isMenuOpen ? 'menu-list-grow' : undefined}
         aria-haspopup='true'
       >
-        <MenuIcon />
+        <MenuIcon2 />
       </IconButton>
 
       <Popper

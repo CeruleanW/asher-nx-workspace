@@ -1,5 +1,5 @@
 //@ts-nocheck
-import {LinearProgress} from '@root/shared/components/atomics/Loading';
+import { LinearProgress } from '@root/shared/components/atomics/Loading';
 import LogRocket from 'logrocket';
 import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';

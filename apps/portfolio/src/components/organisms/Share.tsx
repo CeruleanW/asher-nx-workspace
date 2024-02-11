@@ -9,7 +9,7 @@ import {
   WhatsappIcon,
   LinkedinIcon,
 } from "react-share";
-import { Box } from "@material-ui/core";
+import { Box } from '@root/shared/components/atomics';
 
 
 export default function Share({text, ...optionals}) {

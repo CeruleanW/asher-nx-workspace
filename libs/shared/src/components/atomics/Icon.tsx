@@ -11,6 +11,7 @@ import {
 import { GoNote } from "react-icons/go";
 import { IoMenu } from "react-icons/io5";
 import MuiCloseIcon from '@mui/icons-material/Close';
+import MuiMenuIcon from '@mui/icons-material/Menu';
 
 export function Icon({ name, ...rest }) {
   if (name === 'tools') {
@@ -33,3 +34,4 @@ export function Icon({ name, ...rest }) {
 export const CloseIcon = MuiCloseIcon;
 
 export const MenuIcon = IoMenu;
+export const MenuIcon2 = MuiMenuIcon;

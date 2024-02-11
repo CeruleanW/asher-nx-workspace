@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField } from '@material-ui/core';
+import { TextField } from '@root/shared/components/atomics/Input';
 
 export const SimpleTextField = (props) => {
   const { label, name, ...rest } = props;

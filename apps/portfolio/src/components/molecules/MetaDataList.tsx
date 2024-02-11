@@ -1,15 +1,10 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import {
-  Typography,
-  Box,
-  List,
-  ListItem,
-  ListSubheader,
-  Grid,
-  Link,
-} from '@material-ui/core';
-import blue from '@material-ui/core/colors/blue';
+import { makeStyles } from '@root/shared/styles';
+import { ListItem, List, ListSubheader } from '@root/shared/components/atomics';
+import { Grid } from '@root/shared/components/atomics/Grid';
+import { Typography2 } from '@root/shared/components/atomics/Typography';
+import { Link } from '@root/shared/components/atomics/Link';
+import { blue } from '@root/shared/styles';
 
 export const useStyles = makeStyles((theme) => ({
   linkText: {
@@ -28,27 +23,27 @@ export function FeatureList(props) {
   const MyListItem = ({ text }) => {
     return (
       <ListItem>
-        <Typography>{`${listSymbol} ${text}`}</Typography>
+        <Typography2>{`${listSymbol} ${text}`}</Typography2>
       </ListItem>
     );
   };
 
   const renderItems = items
     ? items.map((item, index) => (
-        <MyListItem text={item} key={'list-item-' + index} />
-      ))
+      <MyListItem text={item} key={'list-item-' + index} />
+    ))
     : null;
 
   let renderItem;
   if (isLink) {
     renderItem = item ? (
       <ListItem>
-        <Typography>
+        <Typography2>
           <Link
             href={item}
             className={classes.linkText}
           >{`${listSymbol} ${linktext}`}</Link>
-        </Typography>
+        </Typography2>
       </ListItem>
     ) : null;
   } else {

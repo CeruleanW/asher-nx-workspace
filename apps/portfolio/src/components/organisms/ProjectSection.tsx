@@ -1,11 +1,11 @@
 //@ts-nocheck
 import React from 'react';
-import { Button } from '@material-ui/core';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import styles from '../../styles/components/components.module.scss';
 import { Card } from '@nextui-org/react';
 import { PAGE_ROUTES } from '../../routes';
+import { Button2 } from '@root/shared/components/atomics';
 // Single project section
 
 const scaleAni = { whileHover: { scale: 1.1 }, whileTap: { scale: 0.9 } };
@@ -62,7 +62,7 @@ function ProjectText(props) {
         className={`flex justify-center items-center mt-8 mb-6`}
         {...scaleAni}
       >
-        <Button
+        <Button2
           variant='contained'
           color='primary'
           size='large'
@@ -71,7 +71,7 @@ function ProjectText(props) {
           to={`${PAGE_ROUTES[1]}/${id}`}
         >
           Check it out!
-        </Button>
+        </Button2>
       </motion.div>
     </div>
   );

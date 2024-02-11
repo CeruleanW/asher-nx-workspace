@@ -3,14 +3,17 @@ import {
   MenuItem as ReactMenuItem,
   MenuButton as ReactMenuButton,
   ControlledMenu as ReactControlledMenu,
-} from '@szhsin/react-menu';
+} from '@szhsin/react-menu'; //basic menu https://szhsin.github.io/react-menu#basic-menu
 // import '@szhsin/react-menu/dist/index.css';
 // import '@szhsin/react-menu/dist/transitions/slide.css';
 import MuiMenu from '@mui/material/Menu';
 import MuiMenuItem from '@mui/material/MenuItem';
+import MuiMenuList from '@mui/material/MenuList';
 
+
+export const MenuList = MuiMenuList;
 /**
- * basic menu https://szhsin.github.io/react-menu#basic-menu
+ * Mui Menu
  */
 export function Menu(props) {
   return <MuiMenu {...props}/>

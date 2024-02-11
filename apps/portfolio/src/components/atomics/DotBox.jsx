@@ -1,6 +1,6 @@
 import React from "react";
-import { Box } from "@material-ui/core";
 import { makeStyles  } from "@material-ui/core/styles";
+// import { makeStyles } from '@root/shared/styles';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -25,5 +25,5 @@ const useStyles = makeStyles((theme) => {
 export default function DotBox() {
   // small dots used for presentation
   const classes = useStyles();
-  return <Box className={classes.dotbox}></Box>;
+  return <div className={classes.dotbox}></div>;
 }

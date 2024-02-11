@@ -1,6 +1,6 @@
 //@ts-nocheck
 import React from 'react';
-import { Box, Grid } from '@material-ui/core';
+import { Box, Grid } from '@root/shared/components/atomics';
 import {
   CarouselProvider,
   Slider,

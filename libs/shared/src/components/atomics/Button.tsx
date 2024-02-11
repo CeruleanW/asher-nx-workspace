@@ -9,6 +9,8 @@ const ResetBg = styled(MuiButton) <{ variant: string }>`
   background-color: ${p => p.variant === 'contained' ? '#1976d2' : '#fff'} ; /* fix conflict between tailwindcss and mui button color */
 `;
 
+export const BaseButon = MuiButton;
+
 /**
  *
  */

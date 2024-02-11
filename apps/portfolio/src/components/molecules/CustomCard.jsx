@@ -1,12 +1,12 @@
 import React from 'react';
 import {
-  Typography,
+  Box,
+  Typography2,
   Card,
   CardActionArea,
   CardContent,
   CardMedia,
-  Box,
-} from '@material-ui/core';
+} from '@root/shared/components/atomics';
 import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 
@@ -59,25 +59,25 @@ export default function CustomCard(props) {
         />
         <CardContent>
           <Box className={classes.title}>
-            <Typography
+            <Typography2
               gutterBottom
-              variant='h5'
+              variant="h5"
               component={'h2'}
-              align='center'
+              align="center"
             >
               {title}
-            </Typography>
+            </Typography2>
           </Box>
           <Box>
-            <Typography
-              variant='body2'
-              color='textPrimary'
-              component='p'
+            <Typography2
+              variant="body2"
+              color="textPrimary"
+              component="p"
               className={classes.descrip}
-              align='center'
+              align="center"
             >
               {subtitle}
-            </Typography>
+            </Typography2>
           </Box>
         </CardContent>
       </CardActionArea>

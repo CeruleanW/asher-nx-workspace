@@ -1,11 +1,13 @@
 //@ts-nocheck
-import { Typography, Box, Grid, Container } from '@material-ui/core';
+import { Box, Container } from '@root/shared/components/atomics/Container';
+import { Grid } from '@root/shared/components/atomics/Grid';
+import { Typography2 } from '@root/shared/components/atomics/Typography';
 import Description from '../../components/molecules/Description';
 import { useParams } from 'react-router-dom';
 import { FeatureList } from '../../components/molecules/MetaDataList';
 import { useProjectDataByID } from '../../hooks';
 import { Loading } from '../../components/atomics/Loading';
-import { H1 } from '../../../../../libs/shared/src/components/atomics/Heading';
+import { H1 } from '@root/shared/components/atomics/Heading';
 import Image from '@root/shared/components/atomics/Image';
 
 export function MetaData(props) {
@@ -19,7 +21,7 @@ export function MetaData(props) {
 function Heading(props) {
   return (
     <div>
-      <Typography variant={'h2'}>{props.children}</Typography>
+      <Typography2 variant={'h2'}>{props.children}</Typography2>
     </div>
   );
 }
@@ -122,9 +124,9 @@ export function ProjectDetailPage(props) {
           </Grid>
         </Box>
         <Box mx={'auto'} mt={10} mb={10} maxWidth={1024}>
-          <Typography variant={'h2'} align={'center'}>
+          <Typography2 variant={'h2'} align={'center'}>
             Lessons Learned
-          </Typography>
+          </Typography2>
           <Box mt={6}>
             {content.lesson.map((p, index) => (
               <Description key={'para-' + index} align={'center'}>

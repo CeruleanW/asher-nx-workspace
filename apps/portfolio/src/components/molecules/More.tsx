@@ -1,8 +1,8 @@
 import React from 'react';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import SVGLine from '../atomics/SVGLine';
-import { Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Typography2 } from '@root/shared/components/atomics/Typography';
+import { makeStyles } from '@root/shared/styles';
 
 export default function SeeMyProject(props) {
   //Styles
@@ -25,9 +25,9 @@ export default function SeeMyProject(props) {
         className={classes.simple}
         style={{ marginLeft: '-6px' }}
       />
-      <Typography noWrap className={`${classes.simple} ${classes.text}`}>
+      <Typography2 noWrap className={`${classes.simple} ${classes.text}`}>
         See My Projects{' '}
-      </Typography>
+      </Typography2>
       <SVGLine height={props.height} />
     </div>
   );
