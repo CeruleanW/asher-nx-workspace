@@ -10,7 +10,7 @@ import '@fontsource/roboto/700.css';
 /**
  *
  */
-export default function App() {
+export function App() {
   return (
     <CompositeProvider>
       <CssBaseline />

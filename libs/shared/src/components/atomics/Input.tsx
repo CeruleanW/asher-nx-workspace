@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import MuiTextField from '@mui/material/TextField';
 
 const StyledInput = styled.input`
   /* width: 80%; */
@@ -30,3 +31,5 @@ export function Input(props) {
 export function BottomBorderInput(props) {
   return <StyledBottomBorder {...props} />;
 }
+
+export const TextField = MuiTextField;

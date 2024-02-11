@@ -1,12 +1,11 @@
 import React from "react";
-import { Typography } from "@material-ui/core";
-
+import { Typography2 } from '@root/shared/components/atomics';
 
 export default function Description(props) {
   return (
-    <Typography color="textSecondary" align={props.align} paragraph>
+    <Typography2 color="textSecondary" align={props.align} paragraph>
       {props.text}
       {props.children}
-    </Typography>
+    </Typography2>
   );
 }

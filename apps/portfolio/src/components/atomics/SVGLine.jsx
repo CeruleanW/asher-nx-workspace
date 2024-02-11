@@ -1,5 +1,5 @@
 import React from "react";
-import grey from "@material-ui/core/colors/grey";
+import {grey} from '@root/shared/styles';
 
 export default function SVGLine(props) {
   // A simple horizontal line in SVG

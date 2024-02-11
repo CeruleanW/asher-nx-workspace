@@ -1,5 +1,4 @@
-import { Tabs } from '@material-ui/core/';
-import { Tab } from '@mui/material';
+import { Tab, Tabs } from '@root/shared/components/atomics';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -19,7 +18,7 @@ const a11yProps = (index) => {
  *
  * @returns
  */
-export default function NavTabs({routes, value, labels}) {
+export default function NavTabs({ routes, value, labels }) {
   const allTabs = routes; //["/", "/projects", "/aboutme", "/contact"];
 
   const renderTabs = allTabs.map((route, index) => (

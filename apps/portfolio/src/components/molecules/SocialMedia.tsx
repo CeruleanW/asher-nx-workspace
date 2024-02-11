@@ -1,5 +1,5 @@
 import { EmailIcon, FacebookIcon, LinkedinIcon } from 'react-share';
-import { Box, Link } from '@material-ui/core';
+import { Link } from '@root/shared/components/atomics';
 
 const iconSize = 26;
 

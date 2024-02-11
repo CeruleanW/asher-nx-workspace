@@ -1,5 +1,5 @@
 //@ts-nocheck
-import { Box } from '@material-ui/core';
+import { Box } from '@root/shared/components/atomics/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import SeeMyProject from '../../components/molecules/More';
 import { ProjectsCarousel } from '../../components/organisms/ProjectsCarousel';

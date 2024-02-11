@@ -1,7 +1,5 @@
-import {
-  Typography,
-  ListItem,
-} from '@material-ui/core';
+import { Typography2 } from '@root/shared/components/atomics/Typography';
+import { ListItem } from '@root/shared/components/atomics/ListItem';
 import styles from '../../styles/components/components.module.scss';
 import styled from 'styled-components';
 
@@ -32,10 +30,10 @@ const Span = styled.span`
 export const SimpleSkill = (props) => {
   return (
     <ListItem>
-      <Typography>
+      <Typography2>
         <span style={{ color: 'cadetblue', marginRight: '6px' }}>●</span>
         {props.children}
-      </Typography>
+      </Typography2>
     </ListItem>
   );
 };

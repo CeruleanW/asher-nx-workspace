@@ -1,19 +1,13 @@
 //@ts-nocheck
 // include a contact form and your social media channels.
 import React, { useState } from 'react';
-import {
-  Typography,
-  Box,
-  Modal,
-  CircularProgress,
-} from '@material-ui/core';
+import { Box, Typography2, Loader, Modal, CenteredLoader } from '@root/shared/components/atomics';
 import { EMAILAPIURL } from '../../features/notification';
 import { makeStyles } from '@material-ui/core/styles';
 import { SocialMedia } from '../../components/molecules/SocialMedia';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { usePersonalData } from '../../hooks';
-import { CenteredLoader } from '@root/shared/components/atomics';
 import { ErrorBoundary } from '@root/shared/features/error-handling';
 import { ContactForm } from './ContactForm';
 
@@ -105,17 +99,17 @@ export function Contact() {
   return (
     <ErrorBoundary>
       <Box maxWidth={1280} className={classes.root}>
-        <Typography variant={'h2'} component={'p'}>
+        <Typography2 variant={'h2'} component={'p'}>
           Get in touch?
-        </Typography>
-        <Typography variant={'h2'} component={'p'}>
+        </Typography2>
+        <Typography2 variant={'h2'} component={'p'}>
           Drop me a line!
-        </Typography>
+        </Typography2>
         <Box mt={1}>
-          <Typography>
+          <Typography2>
             Are you looking for a developer, or just want to talk? Please feel
             to contact me. free.
-          </Typography>
+          </Typography2>
         </Box>
         <Box maxWidth={850} mt={4}>
           <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }}>
@@ -134,7 +128,7 @@ export function Contact() {
           aria-describedby="simple-modal-description"
           disableEnforceFocus
         >
-          <CircularProgress className={classes.spinner} />
+          <Loader className={classes.spinner} />
         </Modal>
       </Box>
     </ErrorBoundary>

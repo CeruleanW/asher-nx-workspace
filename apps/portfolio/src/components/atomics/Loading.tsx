@@ -1,6 +1,6 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import { makeStyles  } from "@material-ui/core/styles";
+import { Loader } from '@root/shared/components/atomics/Loading';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,7 +16,7 @@ export function Loading() {
 
   return (
     <div className={classes.root}>
-      <CircularProgress />
+      <Loader />
     </div>
   );
 }

@@ -1,13 +1,14 @@
-import { createTheme, Theme } from '@mui/material/styles';
+import { createTheme as createMuiTheme, Theme } from '@mui/material/styles';
+import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 
 export { useTheme, makeStyles } from '@mui/styles';
-export { ThemeProvider, styled } from '@mui/material/styles';
+export { styled } from '@mui/material/styles';
 
 declare module '@mui/styles' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {
-
-  }
+  interface DefaultTheme extends Theme {}
 }
 
-export const muiTheme = createTheme();
+export const createTheme = createMuiTheme;
+export const muiTheme = createMuiTheme();
+export const ThemeProvider = MuiThemeProvider;

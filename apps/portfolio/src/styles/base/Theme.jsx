@@ -1,7 +1,8 @@
 //Styles
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+// import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme } from '@root/shared/styles';
 
-const themeInstance = createTheme({
+const themeConfig = {
   palette: {
     main: '#2C2C2C',
     primary: {
@@ -44,13 +45,15 @@ const themeInstance = createTheme({
       },
     },
   },
-});
+};
 
 const font = {
   first: "'Raleway', sans-serif;",
   second: 'Muli, sans-serif',
   body: 'Montserrat, sans-serif',
 };
+
+const themeInstance = createTheme(themeConfig);
 
 themeInstance.typography.h1 = {
   fontSize: '1.9rem',
@@ -88,6 +91,6 @@ themeInstance.typography.subtitle1 = {
   fontFamily: font.body,
 };
 
-export default function Theme(props) {
+export function Theme(props) {
   return <ThemeProvider theme={themeInstance}>{props.children}</ThemeProvider>;
 }

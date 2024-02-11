@@ -1,10 +1,8 @@
 // import React from 'react';
-import {
-  Button,
-  Grid,
-  TextField,
-  useMediaQuery
-} from '@material-ui/core';
+import {useMediaQuery} from '@root/shared/styles';
+import { Grid } from '@root/shared/components/atomics/Grid';
+import { TextField } from '@root/shared/components/atomics/Input';
+import { Button2 } from '@root/shared/components/atomics/Button';
 import { useTheme } from '@material-ui/styles';
 import styles from '../../styles/pages/Contact.module.scss';
 import { ErrorBoundary } from '@root/shared/features/error-handling';
@@ -48,7 +46,7 @@ export function ContactForm({ onSubmit, register }) {
               inputProps={{ ...register('message') }} />
           </Grid>
         </Grid>
-        <Button
+        <Button2
           className={`mt-2 ${styles.tooltip}`}
           variant="contained"
           color="primary"
@@ -60,8 +58,8 @@ export function ContactForm({ onSubmit, register }) {
           onClick={onSubmit}
           href="#"
         >
-          <span className={''}>Send</span>
-        </Button>
+          Send
+        </Button2>
       </form>
     </ErrorBoundary>
   );

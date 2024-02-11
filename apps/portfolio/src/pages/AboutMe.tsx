@@ -1,6 +1,6 @@
 //@ts-nocheck
 import React from 'react';
-import { Box } from '@material-ui/core';
+import { Box } from '@root/shared/components/atomics';
 import { motion } from 'framer-motion';
 import Description from '../components/molecules/Description';
 import MyStory from '../components/organisms/MyStory';
