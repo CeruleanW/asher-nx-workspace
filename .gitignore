@@ -75,18 +75,6 @@ DerivedData
 *.xcuserstate
 ios/.xcode.env.local
 
-# Android/IntelliJ
-#
-build/
-.idea
-.gradle
-local.properties
-*.iml
-*.hprof
-.cxx/
-*.keystore
-!debug.keystore
-
 # node.js
 #
 node_modules/
@@ -159,11 +147,6 @@ local.properties
 *.keystore
 !debug.keystore
 
-# node.js
-#
-node_modules/
-npm-debug.log
-yarn-error.log
 
 # fastlane
 #
@@ -219,18 +202,6 @@ DerivedData
 *.xcuserstate
 ios/.xcode.env.local
 
-# Android/IntelliJ
-#
-build/
-.idea
-.gradle
-local.properties
-*.iml
-*.hprof
-.cxx/
-*.keystore
-!debug.keystore
-
 # node.js
 #
 node_modules/
@@ -262,5 +233,24 @@ yarn-error.log
 # testing
 /coverage
 
+### yarn ###
+# https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
 
+.yarn/*
+!.yarn/releases
+!.yarn/patches
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+
+# if you are NOT using Zero-installs, then:
+# comment the following lines
+!.yarn/cache
+
+# and uncomment the following lines
+# .pnp.*
+
+# End of https://www.toptal.com/developers/gitignore/api/yarn
+
+# User defined
 apps/idea-dropper-mobile-e2e/artifacts

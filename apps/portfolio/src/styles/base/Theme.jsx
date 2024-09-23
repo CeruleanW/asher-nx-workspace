@@ -1,5 +1,4 @@
 //Styles
-// import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import { ThemeProvider, createTheme } from '@root/shared/styles';
 
 const themeConfig = {
