@@ -1,16 +1,15 @@
 //@ts-nocheck
 import React from 'react';
 import { AppBar, Toolbar } from '@root/shared/components/atomics/AppBar';
-import {useMediaQuery, useTheme} from '@root/shared/styles';
+import {useMedia} from 'react-use';
 import { Link } from 'react-router-dom';
 import { Menu } from './Menu';
 import '../../styles/components/link.scss';
 
 export default function Nav({ routes, children, pageTitles }) {
   const allTabs = routes;
-  const theme = useTheme();
-  const mdUp = useMediaQuery(theme.breakpoints.up('md'));
-  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+  const isSmDown = useMedia('(max-width: 600px)');
+  const isMdUp = useMedia('(min-width: 960px)');
 
   return (
     <AppBar position='static' sx={[{
@@ -23,8 +22,8 @@ export default function Nav({ routes, children, pageTitles }) {
           <Link to={allTabs[0]}>&#10023; Asher.Y</Link>
         </p>
         <div className='flex-1'></div>
-        {smDown ? null : children}
-        {mdUp ? null : <Menu routes={allTabs} pageTitles={pageTitles} />}
+        {isSmDown ? null : children}
+        {isMdUp ? null : <Menu routes={allTabs} pageTitles={pageTitles} />}
       </Toolbar>
     </AppBar>
   );
