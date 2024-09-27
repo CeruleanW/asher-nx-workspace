@@ -1,18 +1,15 @@
+//@ts-nocheck
 // import React from 'react';
-import {useMediaQuery} from '@root/shared/styles';
 import { Grid } from '@root/shared/components/atomics/Grid';
 import { TextField } from '@root/shared/components/atomics/Input';
 import { Button2 } from '@root/shared/components/atomics/Button';
-import { useTheme } from '@material-ui/styles';
+import { useMedia } from 'react-use';
 import styles from '../../styles/pages/Contact.module.scss';
 import { ErrorBoundary } from '@root/shared/features/error-handling';
 import { SimpleTextField } from './SimpleTextField';
 
 export function ContactForm({ onSubmit, register }) {
-  const theme = useTheme() as any;
-  const isMobile = useMediaQuery(theme?.breakpoints?.down('xs'), {
-    defaultMatches: true,
-  });
+  const isMobile = useMedia('(max-width: 600px)');
 
   return (
     <ErrorBoundary>
@@ -57,9 +54,7 @@ export function ContactForm({ onSubmit, register }) {
           type="submit"
           onClick={onSubmit}
           href="#"
-        >
-          Send
-        </Button2>
+        >Send</Button2>
       </form>
     </ErrorBoundary>
   );

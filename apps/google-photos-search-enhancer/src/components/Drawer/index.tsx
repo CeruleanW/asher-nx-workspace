@@ -1,8 +1,7 @@
 import { IconButton } from '@root/shared/components/atomics/IconButton';
 import MUIDrawer from '@mui/material/Drawer';
-import { useTheme } from '@root/shared/styles';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+// import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { DrawerList } from './DrawerList';
 import { LastUpdateTime } from './LastUpdateTime';
 import styled from 'styled-components';
@@ -23,7 +22,6 @@ const LastUpdateContainer = styled.div`
  * @returns
  */
 export function Drawer({ show, onHide, }) {
-  const theme = useTheme();
 
   return (
     <MUIDrawer

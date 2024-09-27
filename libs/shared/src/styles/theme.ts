@@ -1,7 +1,7 @@
 import { createTheme as createMuiTheme, Theme } from '@mui/material/styles';
 import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
-
-export { useTheme, makeStyles } from '@mui/styles';
+// export { useTheme } from '@mui/material-pigment-css';
+export { makeStyles } from '@mui/styles';
 export { styled } from '@mui/material/styles';
 
 declare module '@mui/styles' {
