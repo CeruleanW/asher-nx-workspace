@@ -1,5 +1,5 @@
-import { storage, personalDataRef, projectsDataRef } from './config';
-import { getStorage, ref, getDownloadURL } from 'firebase/storage';
+import { personalDataRef, projectsDataRef } from './config';
+import { getDownloadURL } from 'firebase/storage';
 
 export async function getPersonalDataFileUrl() {
   return getDownloadURL(personalDataRef);
