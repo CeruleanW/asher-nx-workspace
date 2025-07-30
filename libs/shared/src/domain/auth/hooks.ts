@@ -8,6 +8,7 @@ export function useGoogleAuthToken() {
   const [value, ...rest] = useLocalStorage(AUTH_KEY);
 
   const isTokenValid  = checkIsGoogleTokenObjValid(value);
-  const token = value?.accessToken;
+  // console.log("useGoogleAuthToken ~ isTokenValid:", isTokenValid)
+  const token = value?.access_token;
   return [token, isTokenValid, ...rest]
 }

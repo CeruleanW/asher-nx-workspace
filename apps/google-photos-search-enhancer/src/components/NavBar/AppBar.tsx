@@ -21,7 +21,7 @@ export function AppBar({ onOpenDrawer, ...optionals }) {
   useEffect(() => {
     // If it's the first time
     if (!checkNotFirstVisit()) {
-      setIsHelpModalOpen(true);
+      setIsHelpModalOpen(true); // open help modal
     }
   }, []);
 

@@ -1,14 +1,13 @@
 //@ts-nocheck
-import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { OAUTH2 } from '../../features/g-api';
 import { getTimeStamp, setUpdateTime, clearData, INDEXEDDB_LOCALMEDIAITEMS_KEY } from '../../features/client-storage';
 import { requestAllMediaItems } from '../../features/g-api';
 import { setAxiosDefaultAuthHeader, sendPost } from '../../features/request';
 import { Button } from '@root/shared/components/atomics/Button';
-// import { useAccessUpdate, useAccess } from '../Context/AccessContext';
 import { useFeedbackUpdate } from '../Context/FeedbackContext';
 import { useSWRConfig } from 'swr';
 import { useGoogleAuthToken } from '@root/shared/domain/auth';
+import { useGoogleAuth, useGoogleUser } from '@root/shared/features/google-api';
 
 /**
  *
@@ -19,18 +18,21 @@ export function GoogleBtn(props) {
 
   // Hooks
   const { mutate } = useSWRConfig();
+  const { googleAuth } = useGoogleAuth();
+  const { currentUser } = useGoogleUser();
   const updateBackdrop = useFeedbackUpdate().handleBackdrop;
   const updateTextMessage = useFeedbackUpdate().handleTextMessage;
 
   /**
    * get the access token from Google
    */
-  const login = async (response) => {
-    const { accessToken, tokenObj } = response || {};
-    console.debug('get login response: ', response);
+  const login = async () => {
+    const user = await googleAuth.signIn();
+    console.log("login ~ user:", user)
+    const accessToken = user.Kc.access_token;
+    const tokenObj = user.Kc;
     if (accessToken && tokenObj) {
       console.debug('get login token: ', tokenObj);
-      //updateIsLogined(true);
       setAxiosDefaultAuthHeader(accessToken);
       setToken(tokenObj);
       // start request
@@ -39,6 +41,7 @@ export function GoogleBtn(props) {
   };
 
   const logout = () => {
+    googleAuth.signOut()
     //updateIsLogined(false);
     remove();
 
@@ -88,45 +91,67 @@ export function GoogleBtn(props) {
     }
   }
 
-  return (
-    <>
-      {isTokenValid ? (
-        <GoogleLogout
-          clientId={OAUTH2.clientID}
-          onLogoutSuccess={logout}
-          buttonText='Logout'
-          // onFailure={handleLogoutFailure}
-          render={(renderProps) => (
-            <Button
+  if (!isTokenValid) {
+    return (
+      <>
+        <Button
+            variant='contained'
+            onClick={login}
+          >
+            Login
+          </Button>
+      </>
+    )
+  }
+
+  console.log("Current user: ", currentUser)
+  return <Button
               variant='contained'
-              onClick={renderProps.onClick}
-              disabled={renderProps.disabled}
+              onClick={logout}
             >
               Logout
             </Button>
-          )}
-        // cookiePolicy={'single_host_origin'}
-        />
-      ) : (
-        <GoogleLogin
-          clientId={OAUTH2.clientID}
-          onSuccess={login}
-          onFailure={handleLoginFailure}
-          cookiePolicy='single_host_origin'
-          responseType='code,token'
-          scope={OAUTH2.scopes[1]}
-          isSignedIn={isTokenValid}
-          render={(renderProps) => (
-            <Button
-              variant='contained'
-              onClick={renderProps.onClick}
-              disabled={renderProps.disabled}
-            >
-              Login
-            </Button>
-          )}
-        />
-      )}
-    </>
-  );
+
+
+  // return (
+  //   <>
+  //     {isTokenValid ? (
+  //       <GoogleLogout
+  //         clientId={OAUTH2.clientID}
+  //         onLogoutSuccess={logout}
+  //         buttonText='Logout'
+  //         // onFailure={handleLogoutFailure}
+  //         render={(renderProps) => (
+  //           <Button
+  //             variant='contained'
+  //             onClick={renderProps.onClick}
+  //             disabled={renderProps.disabled}
+  //           >
+  //             Logout
+  //           </Button>
+  //         )}
+  //       // cookiePolicy={'single_host_origin'}
+  //       />
+  //     ) : (
+  //       <GoogleLogin
+  //         clientId={OAUTH2.clientID}
+  //         onSuccess={login}
+  //         onFailure={handleLoginFailure}
+  //         cookiePolicy='single_host_origin'
+  //         responseType='code,token'
+  //         scope={OAUTH2.scopes[1]}
+  //         isSignedIn={isTokenValid}
+  //         render={(renderProps) => (
+  //           <Button
+  //             variant='contained'
+  //             onClick={renderProps.onClick}
+  //             disabled={renderProps.disabled}
+  //           >
+  //             Login
+  //           </Button>
+  //         )}
+  //       />
+  //     )}
+  //   </>
+  // );
 }

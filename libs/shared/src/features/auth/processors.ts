@@ -55,7 +55,9 @@ export function checkIsTokenValid(token: string): boolean {
 export function checkIsGoogleTokenObjValid(tokenObj: any): boolean {
   try {
     const { expires_at, access_token, token_type } = tokenObj || { exp: true };
-    return access_token && !isUnixTimeBeforeNow(expires_at);
+    const result = access_token && !isUnixTimeBeforeNow(expires_at)
+    // console.log("checkIsGoogleTokenObjValid ~ access_token:", access_token)
+    return result;
   } catch (error) {
     console.warn('checkIsGoogleTokenObjValid gets error', error);
     return false;
