@@ -10,7 +10,7 @@ import '@fontsource/roboto/700.css';
 import { OAUTH2 } from './features/g-api';
 
 /**
- *
+ * The main App component that sets up the application with necessary providers and configurations.
  */
 export function App() {
 
