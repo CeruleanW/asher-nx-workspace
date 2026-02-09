@@ -4,11 +4,6 @@ import './styles.css';
 import { AppProvider } from '../providers';
 import { APPNAME } from '../lib/CONSTANTS';
 import { NotificationGroup } from '@root/shared/features/notification';
-import 'react-toastify/dist/ReactToastify.css';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
 
 /**
  *
