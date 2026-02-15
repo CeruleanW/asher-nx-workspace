@@ -18,7 +18,6 @@
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
-      "@gpse/*": ["apps/google-photos-search-enhancer/*"],
       "@idea": ["apps/idea-dropper/src/index.ts"],
       "@idea/*": ["apps/idea-dropper/src/*"],
       "@portfolio/*": ["apps/portfolio/src/*"],
