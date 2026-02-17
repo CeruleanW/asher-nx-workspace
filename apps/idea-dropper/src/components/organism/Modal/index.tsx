@@ -22,7 +22,12 @@ export function ModalGroup(props) {
   const { data: userData, error: userError } = useUser();
 
   return (
-    <Dialog open={isDialogOpened} onClose={closeDialog}>
+    <Dialog
+      open={isDialogOpened}
+      onClose={closeDialog}
+      maxWidth={operation === 'editCard' ? 'lg' : 'sm'}
+      fullWidth
+    >
       {!operation || operation == 'add' ? (
         <AddBoxDialog
           onHide={closeDialog}
@@ -41,7 +46,7 @@ export function ModalGroup(props) {
         <EditCardDialog
           onHide={closeDialog}
           onConfirm={closeDialog}
-          data={{...modalData, userID: userData?.id}}
+          data={{ ...modalData, userID: userData?.id }}
           key={`edit-card-dialog-${modalItemId}`}
         />
       ) : null}
