@@ -46,7 +46,7 @@ const opts: MongoClientOptions = {
  * requires environment variable MONGODB_URI and MONGODB_DB
  */
 export async function connectToDatabase(): Promise<MongoDBInstance> {
-  console.log('Connecting to Database...', MONGODB_URI);
+  console.log('Connecting to Database...');
   if (cached?.conn) {
     return cached.conn;
   }

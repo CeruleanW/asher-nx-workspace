@@ -1,5 +1,6 @@
 import { connectToDatabase } from '@root/shared/features/mongodb';
-import { getSession } from '@idea/features/auth';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '../../auth/[...nextauth]';
 import {
   CARD_COLLECTION,
   findCardById,
@@ -12,7 +13,7 @@ import { inspect } from '@root/shared/utils';
 //request a card by its id
 export default async (req, res) => {
   const { cardid }: { cardid: string; [x: string]: any } = req.query || {};
-  const session = await getSession({ req });
+  const session = await getServerSession(req, res, authOptions);
   if (session) {
     const { db } = await connectToDatabase();
     if (req.method === 'GET') {
@@ -32,9 +33,9 @@ export default async (req, res) => {
       const result = await updateCard(req?.body);
       return res.status(200).json(result);
     }
-    res.send('No handler for this request method');
+    return res.send('No handler for this request method');
   } else {
-    res.status(500).send({
+    return res.status(401).send({
       error:
         'This is protected content. You must be signed in to access this api route',
     });

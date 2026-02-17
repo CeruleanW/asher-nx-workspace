@@ -1,5 +1,4 @@
-import { connectToDatabase } from '@root/shared/features/mongodb';
-import {  USERS_COLLECTION, createUserDoc} from '@idea/features/idea-server-backend';
+import { createUserDoc } from '@idea/features/idea-server-backend';
 import { CreateBoxDTO } from '../../../features/idea-server';
 
 /**
@@ -16,16 +15,9 @@ export default async (req: {body: CreateBoxDTO; [x:string]: any}, res) => {
       res.status(400).json({ error: 'Missing body' });
       return;
     }
+    // TODO: implement createUserDoc and DB insertion
     const nextBox = createUserDoc(body);
-    res.status(200).json();
-    return;
-
-    const { db } = await connectToDatabase();
-    // const inserted = await db
-    //   .collection(USERS_COLLECTION)
-    //   .insertOne(nextBox);
-    // // console.debug('nextBox', nextBox);
-    // res.status(200).json(inserted);
+    return res.status(200).json();
   } catch (error) {
     console.error(error);
     res.status(500).json({ error });

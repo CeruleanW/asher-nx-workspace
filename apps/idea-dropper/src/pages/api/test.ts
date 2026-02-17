@@ -6,22 +6,15 @@ export default async (req, res) => {
     const { db } = await connectToDatabase();
     const content = {name: 'Mary Smith'}
 
-    db.collection('test').insertOne({
-      content
-    }).then(function(result) {
-      // process result
-      const objResult = JSON.parse(result);
-      const {ok, insertedId} = objResult;
-      console.log(ok);
-      if (ok) {
-        res.status(200).send({insertedId});
-      } else {
-        res.send();
-      }
+    const result = await db.collection('test').insertOne({ content });
+    const { acknowledged, insertedId } = result;
 
-      res.send();
-    })
+    if (acknowledged) {
+      return res.status(200).send({ insertedId });
+    } else {
+      return res.status(500).send({ error: 'Insertion failed' });
+    }
   } else {
-    res.send('The test API cannot be accessed by GET method');
+    return res.send('The test API cannot be accessed by GET method');
   }
 };

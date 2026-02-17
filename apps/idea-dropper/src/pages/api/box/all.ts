@@ -22,6 +22,10 @@ async function getBoxesByEmail(email: string) {
     email: email
   })
 
+  if (!user) {
+    return [];
+  }
+
   const boxes = await db
     .collection(BOX_COLLECTION)
     .find({
@@ -50,7 +54,7 @@ export default async (req, res) => {
       }
     } else {
       // Not Signed in
-      res.status(401)
+      return res.status(401).end();
     }
 
 

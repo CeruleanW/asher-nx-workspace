@@ -1,3 +1,3 @@
-export * from './components/AuthProvicder';
+export * from './components/AuthProvider';
 export * from './hooks';
 export * from './processors';

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { RichTextEditor } from './RichEditor';
 import { Paper } from '@root/shared/components/atomics/Paper';
 import { Button } from '@root/shared/components/atomics/Button';
@@ -45,10 +45,33 @@ export function EditorContent({
   } = optionals;
   // Hooks
   const [saveState, executeSave] = useAsyncFn((data) => onSubmit(data));
-  const {editor, resetEditor, resetPoint} = useEditor();
+  const { editor, resetEditor, resetPoint } = useEditor();
+
+  // FIX: Synchronously set editor children before first render
+  // This ensures Slate initializes with the correct content when the component mounts
+  if (defaultValues?.content && defaultValues.content !== DEFAULT_CONTENT_VALUE) {
+    editor.children = defaultValues.content;
+  }
+
+  // Use 'values' prop to automatically update form when props change
   const { handleSubmit, setValue, reset, control } = useForm({
     defaultValues,
   });
+
+  // Effect: Update form and editor when defaultValues change.
+  // This ensures the drawn card content is displayed even if the component
+  // is reused or if data arrives asynchronously.
+  useEffect(() => {
+    if (defaultValues) {
+      reset(defaultValues);
+
+      // Manually update Slate editor children since the <Slate> value prop
+      // only handles initial state.
+      if (defaultValues.content && defaultValues.content !== DEFAULT_CONTENT_VALUE) {
+        editor.children = defaultValues.content;
+      }
+    }
+  }, [defaultValues, reset, editor]);
 
   // Handlers
   const handleSave = (data) => {
@@ -74,7 +97,7 @@ export function EditorContent({
   };
 
   const handleDiscard = () => {
-    reset({title: '', content: DEFAULT_CONTENT_VALUE, boxes: []});
+    reset({ title: '', content: DEFAULT_CONTENT_VALUE, boxes: [] });
     resetEditor();
   };
 
@@ -92,48 +115,46 @@ export function EditorContent({
 
   return (
     <div className={containerClassName}>
-      <ErrorBoundary>
+      <Controller
+        name="title"
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <CardTitle
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+          />
+        )}
+      />
+      <Controller name="boxes" control={control} render={({ field: { onChange, onBlur, value } }) => (
+        <BoxSelector boxes={tags} onChange={handleSelectBoxChange} value={value} />
+      )} />
+      <Paper className="w-full flex-grow">
         <Controller
-          name="title"
+          name="content"
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
-            <CardTitle
+            <RichTextEditor
               value={value}
-              onChange={(e) => onChange(e.target.value)}
+              editor={editor}
+              callbacks={{
+                setValue: (value) => {
+                  console.debug('changed content value', value);
+                  onChange(value);
+                },
+                remove: () => reset(),
+              }}
             />
           )}
         />
-        <Controller name="boxes" control={control} render={({ field: { onChange, onBlur, value } }) => (
-          <BoxSelector boxes={tags} onChange={handleSelectBoxChange} value={value} />
-        )} />
-        <Paper className="w-full flex-grow">
-          <Controller
-            name="content"
-            control={control}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <RichTextEditor
-                value={value}
-                editor={editor}
-                callbacks={{
-                  setValue: (value) => {
-                    console.debug('changed content value', value);
-                    onChange(value);
-                  },
-                  remove: () => reset(),
-                }}
-              />
-            )}
-          />
-        </Paper>
-        <div className="flex gap-x-4 mt-4 justify-end">
-          <Button type="submit" onClick={handleSubmit(handleSave)}>
-            Save
-          </Button>
-          <Button onClick={handleDiscard} variant="outlined">
-            Reset
-          </Button>
-        </div>
-      </ErrorBoundary>
+      </Paper>
+      <div className="flex gap-x-4 mt-4 justify-end">
+        <Button type="submit" onClick={handleSubmit(handleSave)}>
+          Save
+        </Button>
+        <Button onClick={handleDiscard} variant="outlined">
+          Reset
+        </Button>
+      </div>
     </div>
   );
 }

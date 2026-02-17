@@ -42,7 +42,7 @@ export function EditCardDialog({ onConfirm, onHide, data, ...optionals }) {
     await updateCard(updateData);
 
     // update states
-    setModalData({...data, ...updateData});
+    setModalData({ ...data, ...updateData });
     mutate(ALL_BOX);
 
     // callback
@@ -62,6 +62,7 @@ export function EditCardDialog({ onConfirm, onHide, data, ...optionals }) {
       </DialogTitle>
       <div className="p-4 w-full">
         <EditorContent
+          key={restData?._id}
           userID={userID}
           onSubmit={handleConfirm}
           defaultValues={restData}

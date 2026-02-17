@@ -52,19 +52,19 @@ export default async (req, res) => {
         boxCollection.updateOne({ _id: boxID }, { $set: { draw_pointer: 0 } });
       }
 
-      res.json(card);
+      return res.json(card);
     } else if (req.method === 'DELETE') { // delete a box
       // const boxCollection = await getCollection(BOX_COLLECTION);
       //
       const { box_id } = req.query || {};
       const boxID = new ObjectId(box_id);
       const result = await boxCollection.deleteOne({ _id: boxID});
-      res.json(result);
+      return res.json(result);
     }
   } catch (error) {
     console.error(error);
-    return res.status(500).send('Faild to access box');
+    return res.status(500).send('Failed to access box');
   }
 
-  res.send('No handler for this request method');
+  return res.send('No handler for this request method');
 };

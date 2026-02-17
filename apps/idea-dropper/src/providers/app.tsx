@@ -1,6 +1,6 @@
 import React from 'react';
 import ThemeProvider from './Theme';
-import { AuthProvicder } from '@idea/features/auth/components/AuthProvicder';
+import { AuthProvider } from '@idea/features/auth/components/AuthProvider';
 import { SWRConfigProvider } from './swr';
 
 /**
@@ -9,9 +9,9 @@ import { SWRConfigProvider } from './swr';
 export function AppProvider(props) {
   return (
     <ThemeProvider>
-      <AuthProvicder>
+      <AuthProvider>
         <SWRConfigProvider>{props.children}</SWRConfigProvider>
-      </AuthProvicder>
+      </AuthProvider>
     </ThemeProvider>
   );
 }

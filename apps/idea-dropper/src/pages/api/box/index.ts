@@ -27,7 +27,7 @@ export default async (req: Request, res) => {
     console.log("Session", JSON.stringify(session, null, 2))
   } else {
     // Not Signed in
-    res.status(401)
+    return res.status(401).end();
   }
 
   try {

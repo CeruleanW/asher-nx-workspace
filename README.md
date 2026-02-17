@@ -11,7 +11,6 @@ This repository contains multiple web applications. Most apps use the React ( Ja
 ## Run applications
 
 ```bash
-yarn start:gpse
 yarn start:idea
 yarn start:personal
 yarn start:portfolio

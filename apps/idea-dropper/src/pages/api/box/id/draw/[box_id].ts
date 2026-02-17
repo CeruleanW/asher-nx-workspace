@@ -25,8 +25,15 @@ export default async (req, res) => {
 
       const box = await boxCollection.findOne({ _id: boxID });
 
-      const { cards, draw_pointer, draw_seed } = box || {};
+      let { cards, draw_pointer, draw_seed } = box || {};
       console.debug('draw_seed', draw_seed);
+
+      // Check if draw_pointer is out of bounds (end of deck)
+      if (draw_pointer && draw_pointer >= (cards?.length || 0)) {
+        console.debug('End of deck reached, looping to start.');
+        await boxCollection.updateOne({ _id: boxID }, { $set: { draw_pointer: 0 } });
+        draw_pointer = 0;
+      }
 
       const nextCardID: ObjectId = getNextDrawCardID(
         draw_seed,
@@ -34,21 +41,25 @@ export default async (req, res) => {
         cards
       );
       console.debug('nextCardID', nextCardID);
-      const card = await cardCollection.findOne({ _id: nextCardID });
+      
+      let card = null;
+      if (nextCardID) {
+        card = await cardCollection.findOne({ _id: nextCardID });
+      }
 
       // if card doesn't exist
       if (!card) {
         // remove this nextCardID in cards list
-        await boxCollection.updateOne(
-          {
-            _id: boxID,
-          },
-          {
-            $pull: {
-              cards: nextCardID,
-            },
-          }
-        );
+        if (nextCardID) {
+           await boxCollection.updateOne(
+            { _id: boxID },
+            { $pull: { cards: nextCardID } }
+          );
+        } else {
+           // If nextCardID is null (e.g. empty box), ensure pointer is 0
+           await boxCollection.updateOne({ _id: boxID }, { $set: { draw_pointer: 0 } });
+        }
+       
         return res.status(404).send('Card not found');
       }
 
@@ -74,8 +85,8 @@ export default async (req, res) => {
     }
   } catch (error) {
     console.error(error);
-    return res.status(500).send('Faild to access box');
+    return res.status(500).send('Failed to access box');
   }
 
-  res.send('No handler for this request method');
+  return res.send('No handler for this request method');
 };
