@@ -30,7 +30,7 @@ export type UpdateCardDTO = {
   _id: string;
   title?: string;
   owner?: string;
-  content?: string;
+  content?: any;
   boxes?: string[];
   shared_with?: string;
   tags?: string[];
@@ -39,7 +39,7 @@ export type UpdateCardDTO = {
 export type CreateCardDTO = {
   title: string;
   owner?: string;
-  content?: string;
+  content?: any;
   boxes?: string[];
   shared_with?: string;
   tags?: string[];

@@ -6,6 +6,7 @@ import { APPNAME } from '../lib/CONSTANTS';
 import { NotificationGroup } from '@root/shared/features/notification';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import createEmotionCache from '../lib/createEmotionCache';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -7,13 +7,21 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { Icon } from '@root/shared/components/atomics/Icon';
 import { LogoutBtn } from '../molecule/LogoutBtn';
+import { parseMarkdownToSlate, readFileContent } from '../../lib/markdownImport';
+import { insertCard } from '../../features/idea-server';
+import { useUser } from '../../hooks'; // Correct path
+import { toast } from 'react-toastify';
+import { useSWRConfig } from 'swr';
+import { ALL_BOX } from '../../features/idea-server/apis';
 
 export function MenuAppBar(props) {
   const { title, ...rest } = props;
 
   // Local state
   const [anchorEl, setAnchorEl] = useState(null);
-
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const { data: userData } = useUser(); // Need userID for card creation owner
+  const { mutate } = useSWRConfig();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -21,6 +29,61 @@ export function MenuAppBar(props) {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleImportClick = () => {
+    fileInputRef.current?.click();
+    handleClose();
+  };
+
+  const handleFileChange = async (event) => {
+    const files = event.target.files;
+    if (!files || files.length === 0) return;
+
+    let successCount = 0;
+    let failCount = 0;
+
+    // Process files
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      try {
+        const content = await readFileContent(file);
+        const slateContent = parseMarkdownToSlate(content);
+        const title = file.name.replace(/\.md$/i, ''); // Remove extension
+
+        if (!userData?.id) {
+          console.error("User ID not found for import");
+          toast.error("You must be logged in to import.");
+          break;
+        }
+
+        const cardData = {
+          title,
+          content: slateContent,
+          owner: userData.id,
+          boxes: [] // Default to no box or maybe 'Inbox'?
+        };
+
+        await insertCard(cardData);
+        successCount++;
+      } catch (error) {
+        console.error(`Failed to import ${file.name}`, error);
+        failCount++;
+      }
+    }
+
+    if (successCount > 0) {
+      toast.success(`Successfully imported ${successCount} notes.`);
+      mutate(ALL_BOX); // Refresh boxes/cards list
+    }
+    if (failCount > 0) {
+      toast.error(`Failed to import ${failCount} notes.`);
+    }
+
+    // Reset input
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
   };
 
   return (
@@ -66,11 +129,20 @@ export function MenuAppBar(props) {
               onClose={handleClose}
             >
               <MenuItem onClick={handleClose} disabled={true} >Profile</MenuItem>
+              <MenuItem onClick={handleImportClick}>Import Markdown</MenuItem>
               <LogoutBtn onFulfilled={handleClose} />
             </Menu>
           </div>
         </Toolbar>
       </MuiAppBar>
+      <input
+        type="file"
+        ref={fileInputRef}
+        style={{ display: 'none' }}
+        multiple
+        accept=".md, .txt"
+        onChange={handleFileChange}
+      />
     </div>
   );
 }
