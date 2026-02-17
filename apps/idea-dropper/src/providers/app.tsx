@@ -1,6 +1,6 @@
 import React from 'react';
 import ThemeProvider from './Theme';
-import { AuthProvider } from '@idea/features/auth/components/AuthProvider';
+import { AuthProvider } from '@idea/features/auth';
 import { SWRConfigProvider } from './swr';
 
 /**
