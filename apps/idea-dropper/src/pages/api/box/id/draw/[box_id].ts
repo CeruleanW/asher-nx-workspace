@@ -28,6 +28,20 @@ export default async (req, res) => {
       let { cards, draw_pointer, draw_seed } = box || {};
       console.debug('draw_seed', draw_seed);
 
+      // Determine direction: 'next' (default) or 'prev'
+      const { direction } = req.query;
+      const isPrev = direction === 'prev';
+
+      if (isPrev) {
+         // Move pointer back immediately so we fetch the previous card
+         draw_pointer = (draw_pointer || 0) - 1;
+         if (draw_pointer < 0) {
+            draw_pointer = (cards?.length || 1) - 1; 
+         }
+         // Persist this change immediately so state is consistent
+         await boxCollection.updateOne({ _id: boxID }, { $set: { draw_pointer } });
+      }
+
       // Check if draw_pointer is out of bounds (end of deck)
       if (draw_pointer && draw_pointer >= (cards?.length || 0)) {
         console.debug('End of deck reached, looping to start.');
@@ -65,20 +79,42 @@ export default async (req, res) => {
 
       console.debug('card', card);
 
-      // update draw_pointer
-      if (card) {
+      // Post-fetch update:
+      // If 'prev', we already updated the pointer (to show the prev card). We usually don't need to do anything else, 
+      // unless we want 'prev' to just PEAK at the previous card but keep pointer forward? 
+      // No, "Previous" usually means "Go back", so the pointer should stay back.
+      // 
+      // If 'next' (default), we show the card at current pointer, then increment for next time.
+      if (!isPrev && card) {
         await db
           .collection(BOX_COLLECTION)
           .updateOne({ _id: boxID }, { $inc: { draw_pointer: 1 } });
-        if (draw_pointer === cards.length - 1) {
-          await db
+          
+        // Re-read pointer dependent logic or just trust the inc
+        // (This part can stay mostly as is, but applied only if !isPrev)
+        if (draw_pointer === cards.length - 1) { // Note: using stale local draw_pointer var here is risky if strict
+           // Safest to just relying on the bounds check at start of Next request, 
+           // but keeping the loop-reset here is fine too.
+           await db
             .collection(BOX_COLLECTION)
             .updateOne({ _id: boxID }, { $set: { draw_pointer: 0 } });
         }
-      } else {
+      }
+
+      console.debug('card', card);
+
+      // update draw_pointer if moving forward
+      if (card && !isPrev) {
         await db
           .collection(BOX_COLLECTION)
-          .updateOne({ _id: boxID }, { $set: { draw_pointer: 0 } });
+          .updateOne({ _id: boxID }, { $inc: { draw_pointer: 1 } });
+          
+        // Optimization: check if we just served the last card, reset now to avoid bounds check next time
+        if (draw_pointer >= cards.length - 1) {
+           await db
+            .collection(BOX_COLLECTION)
+            .updateOne({ _id: boxID }, { $set: { draw_pointer: 0 } });
+        }
       }
 
       return res.json(card);

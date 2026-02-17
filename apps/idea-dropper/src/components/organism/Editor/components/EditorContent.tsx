@@ -34,8 +34,9 @@ const DEFAULT_FORM_VALUE = { title: '', content: DEFAULT_CONTENT_VALUE, boxes: [
 export function EditorContent({
   userID,
   onSubmit,
+  readOnly,
   ...optionals
-}: { userID: string } & Partial<OptionalsProps>) {
+}: { userID: string; readOnly?: boolean } & Partial<OptionalsProps>) {
   // Props
   const {
     defaultValues = DEFAULT_FORM_VALUE,
@@ -121,12 +122,19 @@ export function EditorContent({
         render={({ field: { onChange, onBlur, value } }) => (
           <CardTitle
             value={value}
+            disabled={readOnly}
+            readOnly={readOnly} // Just in case CardTitle uses readOnly
             onChange={(e) => onChange(e.target.value)}
           />
         )}
       />
       <Controller name="boxes" control={control} render={({ field: { onChange, onBlur, value } }) => (
-        <BoxSelector boxes={tags} onChange={handleSelectBoxChange} value={value} />
+        <BoxSelector
+          boxes={tags}
+          onChange={handleSelectBoxChange}
+          value={value}
+          isDisabled={readOnly}
+        />
       )} />
       <Paper className="w-full flex-grow">
         <Controller
@@ -136,6 +144,7 @@ export function EditorContent({
             <RichTextEditor
               value={value}
               editor={editor}
+              readOnly={readOnly}
               callbacks={{
                 setValue: (value) => {
                   console.debug('changed content value', value);
@@ -147,14 +156,17 @@ export function EditorContent({
           )}
         />
       </Paper>
-      <div className="flex gap-x-4 mt-4 justify-end">
-        <Button type="submit" onClick={handleSubmit(handleSave)}>
-          Save
-        </Button>
-        <Button onClick={handleDiscard} variant="outlined">
-          Reset
-        </Button>
-      </div>
+
+      {!readOnly && (
+        <div className="flex gap-x-4 mt-4 justify-end">
+          <Button type="submit" onClick={handleSubmit(handleSave)}>
+            Save
+          </Button>
+          <Button onClick={handleDiscard} variant="outlined">
+            Reset
+          </Button>
+        </div>
+      )}
     </div>
   );
 }

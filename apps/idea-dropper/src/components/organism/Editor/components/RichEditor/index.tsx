@@ -4,7 +4,7 @@ import { Editor } from 'slate';
 import { Editable, Slate } from 'slate-react';
 import { Toolbar } from '../Toolbar';
 import { HOTKEYS } from './constants';
-import {Leaf, Element} from './components';
+import { Leaf, Element } from './components';
 // import { DEFAULT_CONTENT_VALUE, CONTENT_KEY } from '../../constants';
 // import { useLocalStorage } from '@root/shared/features/local-storage';
 // import { Button } from '@root/shared/components/atomics/Button';
@@ -27,7 +27,7 @@ const isMarkActive = (editor, format) => {
 /**
  *
  */
-export const RichTextEditor = ({ value, editor, callbacks, ...optionals }) => {
+export const RichTextEditor = ({ value, editor, callbacks, readOnly, ...optionals }) => {
   // Hooks
   const renderElement = useCallback((props) => <Element {...props} />, []);
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
@@ -36,6 +36,7 @@ export const RichTextEditor = ({ value, editor, callbacks, ...optionals }) => {
   const { setValue, remove } = callbacks || {};
 
   const handleKeyDown = (event) => {
+    if (readOnly) return;
     for (const hotkey in HOTKEYS) {
       if (isHotkey(hotkey, event as any)) {
         event.preventDefault();
@@ -46,6 +47,9 @@ export const RichTextEditor = ({ value, editor, callbacks, ...optionals }) => {
   };
 
   const handleChange = (value) => {
+    // If readOnly, we shouldn't really be getting changes, but good to guard
+    if (readOnly) return;
+
     const isAstChange = editor.operations.some(
       (op) => 'set_selection' !== op.type
     );
@@ -58,17 +62,18 @@ export const RichTextEditor = ({ value, editor, callbacks, ...optionals }) => {
   return (
     <div
       className="relative"
-      style={{ userSelect: 'none' }}
+      style={{ userSelect: readOnly ? 'text' : 'none' }}
       contentEditable={false}
     >
       <Slate editor={editor} value={value as any} onChange={handleChange}>
-        <Toolbar />
+        {!readOnly && <Toolbar />}
         <Editable
+          readOnly={readOnly}
           renderElement={renderElement}
           renderLeaf={renderLeaf}
           placeholder="Write your ideas here…"
           spellCheck
-          autoFocus
+          autoFocus={!readOnly}
           onKeyDown={handleKeyDown}
           className={'p-4'}
         />

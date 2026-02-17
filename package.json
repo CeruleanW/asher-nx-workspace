@@ -19,6 +19,7 @@
   "private": true,
   "dependencies": {
     "@emotion/react": "11.10.5",
+    "@emotion/server": "^11.11.0",
     "@emotion/styled": "11.10.5",
     "@fontsource/roboto": "^5.0.8",
     "@fortawesome/fontawesome-free-solid": "^5.0.13",

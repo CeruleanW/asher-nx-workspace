@@ -14,7 +14,6 @@ This repository contains multiple web applications. Most apps use the React ( Ja
 yarn start:idea
 yarn start:personal
 yarn start:portfolio
-yarn start:starter
 ```
 
 ## Development
