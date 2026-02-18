@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 import { getData } from '@root/shared/features/axios';
-import { ALL_BOX, USER_BY_EMAIL } from './apis';
+import { ALL_BOX, USER_BY_EMAIL, INBOX } from './apis';
 import { BoxResponseDTO } from './types';
 
 /**
@@ -18,5 +18,10 @@ export function useUserByEmail(userEmail: string) {
   const url = `${USER_BY_EMAIL}/${encodeURIComponent(userEmail)}`;
   const result = useSWR<any>(url ? url : null, getData);
   // console.log("file: hooks.ts:20 ~ useUserByEmail ~ result:", result)
+  return result;
+}
+
+export function useInbox(enabled = true) {
+  const result = useSWR<any[]>(enabled ? INBOX : null, getData);
   return result;
 }

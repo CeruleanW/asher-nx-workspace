@@ -12,7 +12,7 @@ import { insertCard } from '../../features/idea-server';
 import { useUser } from '../../hooks'; // Correct path
 import { toast } from 'react-toastify';
 import { useSWRConfig } from 'swr';
-import { ALL_BOX } from '../../features/idea-server/apis';
+import { ALL_BOX, INBOX } from '../../features/idea-server/apis';
 
 export function MenuAppBar(props) {
   const { title, ...rest } = props;
@@ -51,7 +51,7 @@ export function MenuAppBar(props) {
         const slateContent = parseMarkdownToSlate(content);
         const title = file.name.replace(/\.md$/i, ''); // Remove extension
 
-        if (!userData?.id) {
+        if (!userData?._id) {
           console.error("User ID not found for import");
           toast.error("You must be logged in to import.");
           break;
@@ -60,11 +60,11 @@ export function MenuAppBar(props) {
         const cardData = {
           title,
           content: slateContent,
-          owner: userData.id,
+          owner: userData._id,
           boxes: [] // Default to no box or maybe 'Inbox'?
         };
 
-        await insertCard(cardData);
+        await insertCard({ cardData });
         successCount++;
       } catch (error) {
         console.error(`Failed to import ${file.name}`, error);
@@ -75,6 +75,7 @@ export function MenuAppBar(props) {
     if (successCount > 0) {
       toast.success(`Successfully imported ${successCount} notes.`);
       mutate(ALL_BOX); // Refresh boxes/cards list
+      mutate(INBOX); // Refresh inbox
     }
     if (failCount > 0) {
       toast.error(`Failed to import ${failCount} notes.`);

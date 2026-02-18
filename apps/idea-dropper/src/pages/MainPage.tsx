@@ -14,6 +14,7 @@ import { MenuAppBar } from '../components/organism/AppBar';
 import { Protected } from '../features/auth/components/Protected';
 import React from "react";
 import { BoxPanel } from '../components/panel/BoxPanel';
+import { InboxPanel } from '../components/panel/InboxPanel';
 
 /**
  * should show all the boxes of current user
@@ -29,7 +30,7 @@ export function MainPage() {
   if (error) {
     return <ErrorMsg text={error?.message} />;
   } else if (isLoading) {
-    return <CenteredLoader data-cy={'main-loader'}/>;
+    return <CenteredLoader data-cy={'main-loader'} />;
   }
 
   // console.debug('Main data', data);
@@ -41,21 +42,24 @@ export function MainPage() {
 
   return (
     <>
-        <PageTemplate>
-          <MenuAppBar title={'Idea Dropper'} ></MenuAppBar>
-          <div className={'flex gap-x-4 mx-4 flex-grow max-w-full'} >
-            <TabPanel value={tab} index={0} className='gap-x-8' >
-              <BoxPanel data={boxes}></BoxPanel>
-            </TabPanel>
-            <TabPanel value={tab} index={1}>
-              <EditorPanel tags={boxes} userID={user?._id} />
-            </TabPanel>
-            <TabPanel value={tab} index={2}>
-              <Board />
-            </TabPanel>
-          </div>
-          <Tabs onChange={handleChange} value={tab} />
-        </PageTemplate>
+      <PageTemplate>
+        <MenuAppBar title={'Idea Dropper'} ></MenuAppBar>
+        <div className={'flex gap-x-4 mx-4 flex-grow max-w-full'} >
+          <TabPanel value={tab} index={0} className='gap-x-8' >
+            <BoxPanel data={boxes}></BoxPanel>
+          </TabPanel>
+          <TabPanel value={tab} index={1} >
+            <InboxPanel />
+          </TabPanel>
+          <TabPanel value={tab} index={2}>
+            <EditorPanel tags={boxes} userID={user?._id} />
+          </TabPanel>
+          <TabPanel value={tab} index={3}>
+            <Board />
+          </TabPanel>
+        </div>
+        <Tabs onChange={handleChange} value={tab} />
+      </PageTemplate>
     </>
   )
 }

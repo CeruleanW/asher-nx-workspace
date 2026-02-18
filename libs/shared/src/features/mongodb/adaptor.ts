@@ -22,8 +22,8 @@ type MongoDBInstance = {
 };
 
 type MongoConnection = {
-  conn: MongoDBInstance;
-  promise: MongoDBInstance;
+  conn: MongoDBInstance | null;
+  promise: Promise<MongoDBInstance> | null;
 }
 
 /**
@@ -31,10 +31,10 @@ type MongoConnection = {
  * in development. This prevents connections growing exponentially
  * during API Route usage.
  */
-let cached: MongoConnection = global.mongo;
+let cached: MongoConnection = global.mongo_fixed;
 
 if (!cached) {
-  cached = global.mongo = { conn: null, promise: null };
+  cached = global.mongo_fixed = { conn: null, promise: null };
 }
 
 const opts: MongoClientOptions = {
@@ -46,19 +46,32 @@ const opts: MongoClientOptions = {
  * requires environment variable MONGODB_URI and MONGODB_DB
  */
 export async function connectToDatabase(): Promise<MongoDBInstance> {
-  console.log('Connecting to Database...');
-  if (cached?.conn) {
+  if (cached.conn) {
     return cached.conn;
   }
 
   if (!cached.promise) {
-    const client: MongoClient = await MongoClient.connect(MONGODB_URI, opts);
-    cached.promise = {
-      client,
-      db: client.db(MONGODB_DB),
+    const opts: MongoClientOptions = {
+        connectTimeoutMS: 5000, 
+        socketTimeoutMS: 5000,
+        serverSelectionTimeoutMS: 5000,
     };
+
+    cached.promise = MongoClient.connect(MONGODB_URI, opts).then((client) => {
+      return {
+        client,
+        db: client.db(MONGODB_DB),
+      };
+    });
   }
-  cached.conn = await cached.promise;
+  
+  try {
+      cached.conn = await cached.promise;
+  } catch (e) {
+      cached.promise = null; // Reset promise on failure so we can retry
+      throw e;
+  }
+  
   return cached.conn;
 }
 

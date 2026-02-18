@@ -33,3 +33,16 @@ export async function getAllCards() {
   const cursor = collection.find();
   return cursor.toArray();
 }
+
+export async function getOrphanCards() {
+  const collection = await getCardCollection();
+  const query = {
+    $or: [
+      { boxes: { $size: 0 } },
+      { boxes: { $exists: false } },
+      { boxes: null },
+    ],
+  };
+  const cursor = collection.find(query);
+  return cursor.toArray();
+}

@@ -9,3 +9,4 @@ export const CARD = `${BASE_URL}/card`;
 
 export const USER_BASE = '/api/user';
 export const USER_BY_EMAIL = `${USER_BASE}/useremail`;
+export const INBOX = `${CARD}/inbox`;

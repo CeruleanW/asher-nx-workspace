@@ -15,6 +15,7 @@ export function Tabs({ value, onChange, ...optionals }) {
         value={value}
       >
         <Tab label="Box" />
+        <Tab label="Inbox" />
         <Tab label="Card" />
         <Tab label="Board" />
       </MuiTabs>

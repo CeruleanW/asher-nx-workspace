@@ -10,6 +10,7 @@ import {
   updateCard,
 } from '../../features/idea-server';
 import { EditorContent } from './Editor';
+import { DEFAULT_CONTENT_VALUE } from './Editor/constants';
 import DialogTitle from '@mui/material/DialogTitle';
 import { EditCardMenu } from './EditCardMenu';
 import { CloseIcon } from '@root/shared/components/atomics/Icon';
@@ -122,7 +123,12 @@ export function EditCardDialog({ onConfirm, onHide, data, ...optionals }) {
           key={restData?._id}
           userID={userID}
           onSubmit={handleConfirm}
-          defaultValues={restData}
+          defaultValues={{
+            ...restData,
+            content: typeof restData?.content === 'string'
+              ? [{ type: 'paragraph', children: [{ text: restData.content }] }]
+              : (restData?.content || DEFAULT_CONTENT_VALUE)
+          }}
           readOnly={!isEditing}
         />
       </div>

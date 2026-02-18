@@ -17,15 +17,19 @@ async function getAllBoxes() {
 }
 
 async function getBoxesByEmail(email: string) {
+  console.log('getBoxesByEmail: connecting DB...');
   const { db } = await connectToDatabase();
+  console.log('getBoxesByEmail: finding user...');
   const user = await db.collection(USERS_COLLECTION).findOne({
     email: email
   })
+  console.log('getBoxesByEmail: user found?', !!user);
 
   if (!user) {
     return [];
   }
 
+  console.log('getBoxesByEmail: finding boxes...');
   const boxes = await db
     .collection(BOX_COLLECTION)
     .find({
@@ -34,6 +38,7 @@ async function getBoxesByEmail(email: string) {
     .sort({ 'last-access-date': -1 })
     .limit(100)
     .toArray();
+  console.log('getBoxesByEmail: boxes fetched.');
   return boxes;
 }
 
@@ -49,7 +54,9 @@ export default async (req, res) => {
       const userEmail = session?.user?.email;
       // console.log("Session", JSON.stringify(session, null, 2))
       if (req.method === 'GET') {
+        console.log('Calling getBoxesByEmail...');
         const boxes = await getBoxesByEmail(userEmail);
+        console.log(`getBoxesByEmail returned ${boxes?.length} boxes`);
         res.status(200).json(boxes);
       }
     } else {
@@ -60,6 +67,6 @@ export default async (req, res) => {
 
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error });
+    res.status(500).json({ error: error.message });
   }
 };
