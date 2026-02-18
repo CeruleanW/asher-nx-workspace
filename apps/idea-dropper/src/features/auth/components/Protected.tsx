@@ -5,11 +5,12 @@ import { AccessDenied } from './AccessDenied';
 /**
  * Wrap a Protected page
  */
-export function Protected({children}) {
-  const { data: session } = useSession();
+export function Protected({ children }) {
+  const { data: session, status } = useSession();
+  const loading = status === "loading";
 
   // When rendering client side don't display anything until loading is complete
-  // if (typeof window !== 'undefined' && loading) return null;
+  if (loading) return null; // Or <Loader />
 
   // If no session exists, display access denied message
   if (!session) { return <><AccessDenied /></> }

@@ -50,3 +50,24 @@ node_modules
 .env
 apps/portfolio/.env
 */**/.env*
+
+
+# Nx
+/.nx-cache
+/.nx/cache
+/.nx/workspace-data
+/.verdaccio/build/local-registry
+/graph/client/src/assets/environment.js
+/graph/client/src/assets/dev/environment.js
+/graph/client/src/assets/generated-project-graphs
+/graph/client/src/assets/generated-task-graphs
+/graph/client/src/assets/generated-task-inputs
+/graph/client/src/assets/generated-source-maps
+/nx-dev/nx-dev/public/documentation
+/nx-dev/nx-dev/public/tutorials
+/nx-dev/nx-dev/public/images/open-graph
+
+# Banner JSON files are generated during static builds
+/nx-dev/nx-dev/lib/banner.json
+/astro-docs/src/content/banner.json
+**/tests/temp-db
