@@ -7,7 +7,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { Icon } from '@root/shared/components/atomics/Icon';
 import { LogoutBtn } from '../molecule/LogoutBtn';
-import { parseMarkdownToSlate, readFileContent } from '../../lib/markdownImport';
+import { parseMarkdownToSlate, readFileContent } from '../../lib';
 import { insertCard } from '../../features/idea-server';
 import { useUser } from '../../hooks'; // Correct path
 import { toast } from 'react-toastify';

@@ -17,7 +17,7 @@ export async function shakeBox(boxId) {
 /**
  * send request to insert a card
  */
-export async function insertCard(data: CreateCardDTO): Promise<any> {
+export async function insertCard(data: CreateCardDTO | { cardData: CreateCardDTO }): Promise<any> {
   // process data
   console.debug('insertCard', data);
   // call API
