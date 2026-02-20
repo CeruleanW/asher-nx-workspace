@@ -112,6 +112,7 @@ export function EditorPanel({
               value={contentValue}
               editor={editor}
               callbacks={{ setValue: setContentValue, remove: removeContent }}
+              readOnly={false}
             /> : null}
           </ErrorBoundary>
         </Paper>
