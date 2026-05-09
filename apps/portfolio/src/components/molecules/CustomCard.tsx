@@ -7,25 +7,20 @@ import {
   CardContent,
   CardMedia,
 } from '@root/shared/components/atomics';
-import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 
-//Styles
+// Styles
 import { makeStyles } from '@material-ui/core/styles';
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: any) => ({
   card: {
     height: theme.spacing(49),
-    // display: "flex",
-    // flexDirection: "column",
   },
   media: {
     width: '100%',
     paddingTop: '56.25%',
     backgroundSize: 'contain',
   },
-  title: {
-    // flex: 1
-  },
+  title: {},
   descrip: {
     opacity: 0.8,
   },
@@ -34,37 +29,36 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-CustomCard.defaultProps = {
-  bg: `/img/image-placeholder-gray.png`,
-};
+interface CustomCardProps {
+  title: string;
+  subtitle?: string;
+  bg?: string;
+  image?: string;
+  id?: string;
+}
 
-CustomCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string,
-  bg: PropTypes.string,
-};
-
-export default function CustomCard(props) {
+export default function CustomCard({
+  title,
+  subtitle,
+  image,
+  id,
+  bg = '/img/image-placeholder-gray.png',
+}: CustomCardProps) {
   const classes = useStyles();
-  const { title, subtitle, image, id } = props;
 
   return (
     <Card elevation={3} className={classes.card}>
       <CardActionArea component={Link} to={`/projects/${id}`}>
+        {/* cover prop is not in MUI CardMedia types; use any spread per migration spec any-policy */}
         <CardMedia
           className={classes.media}
           image={image}
-          cover={true}
+          {...({ cover: true } as any)}
           title={title}
         />
         <CardContent>
           <Box className={classes.title}>
-            <Typography2
-              gutterBottom
-              variant="h5"
-              component={'h2'}
-              align="center"
-            >
+            <Typography2 gutterBottom variant="h5" component={'h2'} align="center">
               {title}
             </Typography2>
           </Box>
@@ -81,7 +75,6 @@ export default function CustomCard(props) {
           </Box>
         </CardContent>
       </CardActionArea>
-      {/* <Collapse /> */}
     </Card>
   );
 }

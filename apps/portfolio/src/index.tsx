@@ -5,7 +5,8 @@ import './styles/base/global.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
+// ReactDOM.render is deprecated in React 18; cast to any to avoid @types/react-dom overload mismatch
+(ReactDOM.render as any)(
   <React.StrictMode>
     <App />
   </React.StrictMode>,

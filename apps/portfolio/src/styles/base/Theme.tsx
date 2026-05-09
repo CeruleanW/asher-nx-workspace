@@ -90,6 +90,12 @@ themeInstance.typography.subtitle1 = {
   fontFamily: font.body,
 };
 
-export function Theme(props) {
-  return <ThemeProvider theme={themeInstance}>{props.children}</ThemeProvider>;
+import type { ReactNode } from 'react';
+
+interface ThemeProps {
+  children: ReactNode;
+}
+
+export function Theme({ children }: ThemeProps) {
+  return <ThemeProvider theme={themeInstance}>{children}</ThemeProvider>;
 }
