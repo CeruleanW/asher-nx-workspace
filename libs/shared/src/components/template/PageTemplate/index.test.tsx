@@ -1,8 +1,12 @@
+// @ts-nocheck -- @types/enzyme is not installed; enzyme calls cannot be statically typed per migration spec.
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import PageTemplate from '.';
+import type { ComponentProps } from 'react';
 
-const wrap = (props = {}) =>
+type WrapProps = Partial<ComponentProps<typeof PageTemplate>>;
+
+const wrap = (props: WrapProps = {}) =>
   shallow(
     <PageTemplate header="header" footer="footer" {...props}>
       test

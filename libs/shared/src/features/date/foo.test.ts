@@ -3,7 +3,7 @@ import {compareIsLaterThanOrEqual, compareIsEarlierThanOrEqual, diffInHours} fro
 
 test('When b is later than a, should return false', () => {
   const a = new Date();
-  let b;
+  let b: Date | undefined;
   setTimeout(() => {
     b = new Date();
     expect(compareIsLaterThanOrEqual(a, b)).toBe(false);
@@ -13,7 +13,7 @@ test('When b is later than a, should return false', () => {
 
 test('When a is later than b, should return true', () => {
   const b = new Date();
-  let a;
+  let a: Date | undefined;
   setTimeout(() => {
     a = new Date();
     expect(compareIsLaterThanOrEqual(a, b)).toBe(true);
@@ -24,7 +24,7 @@ test('When a is later than b, should return true', () => {
 describe("Test compareIsEarlierThanOrEqual", () => {
   it("When b is later than a, should return true", () => {
     const a = new Date();
-    let b;
+    let b: Date | undefined;
     setTimeout(() => {
       b = new Date();
       expect(compareIsEarlierThanOrEqual(a, b)).toBe(true);
@@ -33,7 +33,7 @@ describe("Test compareIsEarlierThanOrEqual", () => {
 
   it("When a is later than b, should return false", () => {
     const b = new Date();
-    let a;
+    let a: Date | undefined;
     setTimeout(() => {
       a = new Date();
       expect(compareIsEarlierThanOrEqual(a, b)).toBe(false);
