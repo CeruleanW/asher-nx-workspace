@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(awk '/^## Task 37/,/^## Task 46/' docs/superpowers/plans/2026-05-09-js-to-ts-migration.md)",
+      "Read(//tmp/**)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); deps={**d.get\\('dependencies',{}\\), **d.get\\('devDependencies',{}\\)}; print\\({k:v for k,v in deps.items\\(\\) if 'mongodb' in k.lower\\(\\)}\\)\")",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); paths=d.get\\('compilerOptions',{}\\).get\\('paths',{}\\); [print\\(k,v\\) for k,v in paths.items\\(\\) if 'idea' in k.lower\\(\\)]\")",
+      "Bash(git mv *)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); paths=d.get\\('compilerOptions',{}\\).get\\('paths',{}\\); [print\\(k,'->',v\\) for k,v in paths.items\\(\\)]\")",
+      "Bash(npx tsc *)"
+    ]
+  }
+}
