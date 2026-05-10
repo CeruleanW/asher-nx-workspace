@@ -1,4 +1,16 @@
-const schema = {
+import type { ObjectId } from 'mongodb';
+
+export interface ICard {
+  'created-date': Date;
+  'last-updated-date': Date;
+  'last-access-date': Date;
+  owner: ObjectId;
+  content: string;
+  title?: string;
+  boxes?: string;
+}
+
+export const cardSchema = {
   $jsonSchema: {
     required: [
       'created-date',
@@ -13,7 +25,7 @@ const schema = {
       'last-access-date': { bsonType: 'date' },
       owner: { bsonType: 'objectId' },
       title: { bsonType: 'string' },
-      boxes: { bsonType: 'string' }
+      boxes: { bsonType: 'string' },
     },
   },
 };

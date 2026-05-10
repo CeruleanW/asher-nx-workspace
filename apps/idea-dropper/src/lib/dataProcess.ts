@@ -1,0 +1,3 @@
+function parseJSON(): void {}
+
+export {};

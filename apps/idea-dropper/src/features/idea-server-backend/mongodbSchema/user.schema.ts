@@ -1,5 +1,18 @@
-//name, password,
-const schema = {
+import type { ObjectId, Timestamp } from 'mongodb';
+
+export interface IUser {
+  username: string;
+  password: string;
+  boxes: ObjectId[];
+  owner: ObjectId;
+  content: string;
+  'created-date'?: Timestamp;
+  'last-login-date'?: Timestamp;
+  type?: string;
+}
+
+// name, password,
+export const userSchema = {
   $jsonSchema: {
     required: ['username', 'password', 'boxes', 'owner', 'content'],
     properties: {

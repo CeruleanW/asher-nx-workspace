@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 // import { useState } from 'react';
 // import Footer from './Footer/Footer';
 // import { SideMenu } from './SideMenu';
@@ -5,23 +6,28 @@
 // import Tabs from './Tabs';
 // import Tab from './Tab';
 
-const tabTypes = ['box', 'add', 'board'];
+const tabTypes = ['box', 'add', 'board'] as const;
 
-export function FrameWrapper({ title, ...optionals }) {
-  const {children, activeTab, ...rest} = optionals;
+interface FrameWrapperProps {
+  title: string;
+  children?: ReactNode;
+  activeTab?: (typeof tabTypes)[number];
+}
+
+export function FrameWrapper({ title, children, activeTab, ...rest }: FrameWrapperProps) {
   // const [isMenuOpened, setIsMenuOpened] = useState(false);
 
   return (
     <>
-      <div className='flex flex-col min-h-screen'>
-        <header className='w-full'>
+      <div className="flex flex-col min-h-screen">
+        <header className="w-full">
           {/* <Nav
             isMenuOpened={isMenuOpened}
             setIsMenuOpened={setIsMenuOpened}
             title={title}
           /> */}
         </header>
-        <div className='flex flex-1 justify-start' >
+        <div className="flex flex-1 justify-start">
           {/* {isMenuOpened ? <SideMenu /> : null} */}
           {children}
         </div>
