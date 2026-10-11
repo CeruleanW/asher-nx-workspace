@@ -4,6 +4,38 @@
 
 > This is my portfolio. Nothing else.
 
+## Run locally
+
+From the workspace root:
+
+```sh
+yarn install --frozen-lockfile
+yarn start:portfolio
+```
+
+The development server uses port 3000 by default. Set `PORT` to choose another
+port. Build the production site with `yarn build:portfolio`; output is written
+to `dist/apps/portfolio`.
+
+The site reads `public/data/personal-data.yaml` and `public/data/projects.json`,
+so running it locally does not require Firebase credentials.
+
+### Dependencies on an external filesystem
+
+If the workspace is on a filesystem such as exFAT that cannot support the
+usual dependency links, install dependencies on a Linux filesystem instead:
+
+```sh
+export YARN_MODULES_FOLDER=/tmp/opencode/portfolio-runtime/node_modules
+yarn install --frozen-lockfile --ignore-engines --modules-folder "$YARN_MODULES_FOLDER"
+yarn start:portfolio
+```
+
+Keep `YARN_MODULES_FOLDER` set when running or building the app. The portfolio
+launcher and CRACO configuration use it for executable, package, and
+TypeScript resolution. The directory in this example is temporary; reinstall
+dependencies if it is removed.
+
 ## Pages
 
 * Home
