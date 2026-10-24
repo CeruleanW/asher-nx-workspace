@@ -1,5 +1,0 @@
-/**
- * Firebase
- */
-export * from './app';
-

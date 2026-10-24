@@ -17,8 +17,30 @@ The development server uses port 3000 by default. Set `PORT` to choose another
 port. Build the production site with `yarn build:portfolio`; output is written
 to `dist/apps/portfolio`.
 
-The site reads `public/data/personal-data.yaml` and `public/data/projects.json`,
-so running it locally does not require Firebase credentials.
+The portfolio requires sign-in to view. Personal data is fetched from a private
+Supabase Storage bucket; project data remains a public static file at
+`public/data/projects.json`.
+
+### Configure private personal data
+
+1. Create a Supabase project and a **private** Storage bucket named
+   `personal-data`.
+2. Create your Supabase Auth user and add its UUID in
+   `supabase/storage-policy.sql`; run that policy in the SQL editor. It grants
+   read access only to that user and grants no browser write access.
+3. Upload `personal-data.yaml` to the bucket. Keep service-role keys private;
+   the portfolio only uses the publishable/anon key and a user's Auth session.
+4. Copy `.env.example` to `.env` and fill in the project URL and publishable
+   (or legacy anon) key. These `REACT_APP_` values are public by design; the
+   bucket policy is what protects the file.
+
+The old server application has been removed. Its sample payloads are archived
+under the workspace-level `archive/personal-data-server-data` directory. The
+portfolio YAML source is kept locally under `apps/portfolio/private-data/`
+and ignored by Git; upload it to the private bucket before deleting the local
+copy. The old public YAML path is no longer served. Note that files and values
+committed in earlier Git history cannot be made private by this change; rotate
+any credentials or secrets that may have been included there.
 
 ### Dependencies on an external filesystem
 

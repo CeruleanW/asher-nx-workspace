@@ -13,6 +13,7 @@ import { easterEgg } from './lib/easter-egg';
 import './styles/main.scss';
 import { MainRoutesGroup } from './routes/MainRoutesGroup';
 import { ProviderGroup } from './providers';
+import { AuthGate } from './features/supabase/AuthGate';
 
 LogRocket.init('5bsway/portfolio');
 
@@ -37,7 +38,7 @@ export default function App() {
 
 
   return (
-    <ProviderGroup>
+    <AuthGate><ProviderGroup>
       <BrowserRouter>
         <div className={'root-container'}>
           <Nav routes={PAGE_ROUTES} pageTitles={PAGE_TITLES}>
@@ -65,6 +66,6 @@ export default function App() {
           </React.Suspense>
         </div>
       </BrowserRouter>
-    </ProviderGroup>
+    </ProviderGroup></AuthGate>
   );
 }

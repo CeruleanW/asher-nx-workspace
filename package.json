@@ -5,14 +5,11 @@
   "scripts": {
     "start": "nx serve",
     "start:idea": "nx serve idea-dropper",
-    "start:personal": "nx serve personal-data",
     "start:portfolio": "node tools/portfolio.cjs start",
     "start:starter": "nx serve starter",
     "build": "nx build",
     "build:idea": "nx build idea-dropper",
     "build:portfolio": "node tools/portfolio.cjs build",
-    "build:personal": "nx build personal-data",
-    "run:personal": "nx run personal-data:build",
     "run:portfolio": "nx run portfolio:build",
     "test": "nx test"
   },
