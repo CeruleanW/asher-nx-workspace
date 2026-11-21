@@ -4167,18 +4167,6 @@
     dotenv "~10.0.0"
     semver "7.3.4"
 
-"@nrwl/detox@15.9.7":
-  version "15.9.7"
-  resolved "https://registry.yarnpkg.com/@nrwl/detox/-/detox-15.9.7.tgz#41abd8a814afbdd7e97e11063067a2121a29e538"
-  integrity sha512-zP6bJgNlXw5R440p7VJXXU6eQphs8Zh8GT+2ytWGJ0JtAS7Jc3mukEElRGoLbr8C2zy/t0CGzklXf15ZHCHCCw==
-  dependencies:
-    "@nrwl/devkit" "15.9.7"
-    "@nrwl/jest" "15.9.7"
-    "@nrwl/js" "15.9.7"
-    "@nrwl/linter" "15.9.7"
-    "@nrwl/react" "15.9.7"
-    "@nrwl/workspace" "15.9.7"
-
 "@nrwl/devkit@15.9.2":
   version "15.9.2"
   resolved "https://registry.yarnpkg.com/@nrwl/devkit/-/devkit-15.9.2.tgz#482b89f1bf88d3600b11f8b7e3e4452c5766eca4"
@@ -4326,17 +4314,6 @@
     tmp "~0.2.1"
     tslib "^2.3.0"
 
-"@nrwl/linter@15.9.7":
-  version "15.9.7"
-  resolved "https://registry.yarnpkg.com/@nrwl/linter/-/linter-15.9.7.tgz#8cb2b02e945fdd461cdd8f52c470ab55c5ac0ab3"
-  integrity sha512-PSbdBodqpbw1jmCWGLB1kxKRM8wpbonhZ3V133aLwb8P9c4q0aN7b3Z9VvtNKSS9eaLxYLu50BGiOahMIf4VXg==
-  dependencies:
-    "@nrwl/devkit" "15.9.7"
-    "@nrwl/js" "15.9.7"
-    "@phenomnomnominal/tsquery" "4.1.1"
-    tmp "~0.2.1"
-    tslib "^2.3.0"
-
 "@nrwl/next@15.9.2":
   version "15.9.2"
   resolved "https://registry.yarnpkg.com/@nrwl/next/-/next-15.9.2.tgz#a2702f33ce42a7d34f386bd9e9c3735f81d9a86a"
@@ -4473,27 +4450,6 @@
   resolved "https://registry.yarnpkg.com/@nrwl/nx-win32-x64-msvc/-/nx-win32-x64-msvc-15.9.7.tgz#1677ab1dcce921706b5677dc2844e3e0027f8bd5"
   integrity sha512-x6URof79RPd8AlapVbPefUD3ynJZpmah3tYaYZ9xZRMXojVtEHV8Qh5vysKXQ1rNYJiiB8Ah6evSKWLbAH60tw==
 
-"@nrwl/react-native@15.9.7":
-  version "15.9.7"
-  resolved "https://registry.yarnpkg.com/@nrwl/react-native/-/react-native-15.9.7.tgz#44c63229fbb8471841385a5f533233c80959f8eb"
-  integrity sha512-Pxu+d6P2L1qL5+HVaYU/C/vcEqSoW52qRTmvp3ngD8kv0PclepCq9lM+bae6Nus7lNexykFx6fSAcEKo31dXvA==
-  dependencies:
-    "@nrwl/detox" "15.9.7"
-    "@nrwl/devkit" "15.9.7"
-    "@nrwl/jest" "15.9.7"
-    "@nrwl/js" "15.9.7"
-    "@nrwl/linter" "15.9.7"
-    "@nrwl/react" "15.9.7"
-    "@nrwl/workspace" "15.9.7"
-    chalk "^4.1.0"
-    enhanced-resolve "^5.8.3"
-    fs-extra "^11.1.0"
-    ignore "^5.0.4"
-    metro-resolver "^0.74.1"
-    minimatch "3.0.5"
-    node-fetch "^2.6.7"
-    tsconfig-paths "^4.1.2"
-
 "@nrwl/react@15.9.2":
   version "15.9.2"
   resolved "https://registry.yarnpkg.com/@nrwl/react/-/react-15.9.2.tgz#bb6bde0a1b4cb1e6b3d12cb93d765f367b366103"
@@ -4503,21 +4459,6 @@
     "@nrwl/js" "15.9.2"
     "@nrwl/linter" "15.9.2"
     "@nrwl/workspace" "15.9.2"
-    "@phenomnomnominal/tsquery" "4.1.1"
-    "@svgr/webpack" "^6.1.2"
-    chalk "^4.1.0"
-    file-loader "^6.2.0"
-    minimatch "3.0.5"
-
-"@nrwl/react@15.9.7":
-  version "15.9.7"
-  resolved "https://registry.yarnpkg.com/@nrwl/react/-/react-15.9.7.tgz#04294c45872a377ca634921108c9115d012e4013"
-  integrity sha512-GFCrbSDNLV/zlc84cb0tYGoV9SO8FQFv0noyeVvL+FzLCv7Ry7KF9gr9CRJxJa6VpuRre9VoiYU0Zq/xQPb27Q==
-  dependencies:
-    "@nrwl/devkit" "15.9.7"
-    "@nrwl/js" "15.9.7"
-    "@nrwl/linter" "15.9.7"
-    "@nrwl/workspace" "15.9.7"
     "@phenomnomnominal/tsquery" "4.1.1"
     "@svgr/webpack" "^6.1.2"
     chalk "^4.1.0"
@@ -7403,11 +7344,6 @@ abs-svg-path@^0.1.1:
   resolved "https://registry.yarnpkg.com/abs-svg-path/-/abs-svg-path-0.1.1.tgz#df601c8e8d2ba10d4a76d625e236a9a39c2723bf"
   integrity sha512-d8XPSGjfyzlXC3Xx891DJRyZfqk5JU0BJrDQcsWomFIV1/BIzPW5HDH5iDdWpqWaav0YVIEzT1RHTwWr0FFshA==
 
-absolute-path@^0.0.0:
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/absolute-path/-/absolute-path-0.0.0.tgz#a78762fbdadfb5297be99b15d35a785b2f095bf7"
-  integrity sha512-HQiug4c+/s3WOvEnDRxXVmNtSG5s2gJM9r19BTcqjp7BWcE48PB+Y2G6jE65kqI0LpsQeMZygt/b60Gi4KxGyA==
-
 accepts@~1.3.4, accepts@~1.3.5, accepts@~1.3.8:
   version "1.3.8"
   resolved "https://registry.yarnpkg.com/accepts/-/accepts-1.3.8.tgz#0bf0be125b67014adcb0b0921e62db7bffe16b2e"
@@ -9973,14 +9909,6 @@ enhanced-resolve@^5.0.0, enhanced-resolve@^5.12.0, enhanced-resolve@^5.15.0, enh
   dependencies:
     graceful-fs "^4.2.4"
     tapable "^2.2.0"
-
-enhanced-resolve@^5.8.3:
-  version "5.19.0"
-  resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-5.19.0.tgz#6687446a15e969eaa63c2fa2694510e17ae6d97c"
-  integrity sha512-phv3E1Xl4tQOShqSte26C7Fl84EwUdZsyOuSSk9qtAGyyQs2s3jJzComh+Abf4g187lUUAvH+H26omrqia2aGg==
-  dependencies:
-    graceful-fs "^4.2.4"
-    tapable "^2.3.0"
 
 enquirer@^2.3.6, enquirer@~2.3.6:
   version "2.3.6"
@@ -13318,11 +13246,6 @@ jest-pnp-resolver@^1.2.2:
   resolved "https://registry.yarnpkg.com/jest-pnp-resolver/-/jest-pnp-resolver-1.2.3.tgz#930b1546164d4ad5937d5540e711d4d38d4cad2e"
   integrity sha512-+3NpwQEnRoIBtx4fyhblQDPgJI0H1IEIkX7ShLUjPGA7TtUTvI1oiKi3SR4oBR0hQhQR80l4WAe5RrXBwWMA8w==
 
-jest-react-native@18.0.0:
-  version "18.0.0"
-  resolved "https://registry.yarnpkg.com/jest-react-native/-/jest-react-native-18.0.0.tgz#77dd909f069324599f227c58c61c2e62168726ba"
-  integrity sha512-BPL0WBX1kx+qo4KB92o82pcq4uFXH6gmYtN7DDj+etMK6pvtWwPFWpvT9JHmaS96wP5Xf9Vq2ilAxXycgHeMog==
-
 jest-regex-util@^27.5.1:
   version "27.5.1"
   resolved "https://registry.yarnpkg.com/jest-regex-util/-/jest-regex-util-27.5.1.tgz#4da143f7e9fd1e542d4aa69617b38e4a78365b95"
@@ -14791,13 +14714,6 @@ methods@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/methods/-/methods-1.1.2.tgz#5529a4d67654134edcc5266656835b0f851afcee"
   integrity sha512-iclAHeNqNm68zFtnZ0e+1L2yUIdvzNoauKU4WBA3VvH/vPFieF7qfRlwUZU+DA9P9bPXIS90ulxoUoCH23sV2w==
-
-metro-resolver@^0.74.1:
-  version "0.74.1"
-  resolved "https://registry.yarnpkg.com/metro-resolver/-/metro-resolver-0.74.1.tgz#62c1313bf8ff02b86d6cdd9294306d718970caac"
-  integrity sha512-1Ju7bvUnmy1lmsYwhujWsP4qxBVfVF7CkKiUCRolUbyZzGgymyVGXVN5yEnbXXNHgBAOlr4+2KKYjoXzhXBo4g==
-  dependencies:
-    absolute-path "^0.0.0"
 
 micromatch@^4.0.0, micromatch@^4.0.2, micromatch@^4.0.4, micromatch@^4.0.5:
   version "4.0.5"
@@ -18644,11 +18560,6 @@ tapable@^2.0.0, tapable@^2.1.1, tapable@^2.2.0, tapable@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-2.2.1.tgz#1967a73ef4060a82f12ab96af86d52fdb76eeca0"
   integrity sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==
-
-tapable@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/tapable/-/tapable-2.3.0.tgz#7e3ea6d5ca31ba8e078b560f0d83ce9a14aa8be6"
-  integrity sha512-g9ljZiwki/LfxmQADO3dEY1CbpmXT5Hm2fJ+QaGKwSXUylMybePR7/67YW7jOrrvjEgL1Fmz5kzyAjWVWLlucg==
 
 tar-stream@~2.2.0:
   version "2.2.0"

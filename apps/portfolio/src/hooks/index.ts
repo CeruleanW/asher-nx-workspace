@@ -1,5 +1,7 @@
 import { fetchProjectsData, PROJECTS_DATA_LINK, PERSONAL_DATA_LINK, fetchPersonalData } from '../lib';
 import useSWR from 'swr';
+import { useSupabaseSession } from '../features/supabase/AuthGate';
+import type { SupabaseSession } from '../features/supabase/auth';
 
 interface Project {
   id: string;
@@ -42,6 +44,10 @@ export function useProjectDataByID(id: string): UseProjectDataByIDResult {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function usePersonalData(): { data: any; error: any; isLoading: boolean } {
   // pragmatic: data is any to allow destructuring in Resume/index.tsx without refactoring consumers
-  const { data, error } = useSWR(PERSONAL_DATA_LINK, fetchPersonalData);
+  const session = useSupabaseSession();
+  const { data, error } = useSWR(
+    session ? [PERSONAL_DATA_LINK, session.access_token] : null,
+    () => fetchPersonalData(session as SupabaseSession)
+  );
   return { data, error, isLoading: !data && !error };
 }

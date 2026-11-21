@@ -39,6 +39,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+._*
 node_modules
 
 # Next.js
@@ -50,7 +51,9 @@ node_modules
 # Environment variables
 .env
 apps/portfolio/.env
+apps/portfolio/private-data/
 */**/.env*
+!apps/portfolio/.env.example
 
 
 # Nx

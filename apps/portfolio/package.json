@@ -23,8 +23,8 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "BUILD_PATH=../../dist/apps/portfolio craco build",
+    "start": "node ../../tools/portfolio.cjs start",
+    "build": "node ../../tools/portfolio.cjs build",
     "test": "craco test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
