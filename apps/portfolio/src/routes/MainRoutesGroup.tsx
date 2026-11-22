@@ -5,7 +5,7 @@ import { Home } from '../pages/Home';
 import { ProjectDetailPage } from '../pages/ProjectDetail';
 import { Projects } from '../pages/Projects';
 import { Resume } from '../pages/Resume';
-import { PAGE_ROUTES } from './constants';
+import { PAGE_ROUTES, RESUME_ROUTE } from './constants';
 import { lazy } from 'react';
 import { Contact } from '../pages/Contact';
 import { AuthGate } from '../features/supabase/AuthGate';
@@ -39,7 +39,7 @@ export function MainRoutesGroup() {
           element={<Contact />}
         />
         <Route
-          path={PAGE_ROUTES[4]}
+          path={RESUME_ROUTE}
           element={<AuthGate><Resume /></AuthGate>}
         />
       </Routes>
