@@ -1,5 +1,4 @@
 import { EditorPanel } from './EditorPanel';
-import { renderHook, act } from '@testing-library/react-hooks';
 
 // Editor
 // should add a card to the database
