@@ -25,7 +25,12 @@ export const useStyles = makeStyles((theme) => ({
     maxWidth: '100%',
   },
   halfBackground: {
-    background: `linear-gradient(to top, ${theme.palette.secondary.light} 50%, transparent 50%)`,
+    // v4 makeStyles (still imported above) cannot read the v5 theme provided by
+    // ThemeProvider, so theme.palette.secondary.light falls back to the default
+    // v4 palette (pink #ff4081). Use the theme constant directly (#DCEAEB,
+    // secondary.light in themeConfig / palette.scss) until this file migrates
+    // to v5 styling.
+    background: 'linear-gradient(to top, #DCEAEB 50%, transparent 50%)',
   },
 }));
 
