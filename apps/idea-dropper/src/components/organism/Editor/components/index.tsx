@@ -24,7 +24,7 @@ export const Menu = React.forwardRef(
 )
 
 
-const StyledToolbar = styled(Menu)`
+const StyledToolbar = styled.div`
   border-bottom: 2px solid #eee;
 `;
 
@@ -34,10 +34,10 @@ export const ToolbarContainer = React.forwardRef(
     ref: Ref<OrNull<HTMLDivElement>>
   ) => (
     <StyledToolbar
-      {...props}
       ref={ref}
       className={`relative p-3 max-w-full ${className}`}
-    />
+    >
+      <Menu {...props} />
+    </StyledToolbar>
   )
 )
-

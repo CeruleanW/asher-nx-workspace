@@ -1,4 +1,5 @@
 //Styles
+import type { ReactNode } from 'react';
 import { ThemeProvider, createTheme } from '@root/shared/styles';
 
 const themeConfig = {
@@ -89,8 +90,6 @@ themeInstance.typography.body1 = {
 themeInstance.typography.subtitle1 = {
   fontFamily: font.body,
 };
-
-import type { ReactNode } from 'react';
 
 interface ThemeProps {
   children: ReactNode;

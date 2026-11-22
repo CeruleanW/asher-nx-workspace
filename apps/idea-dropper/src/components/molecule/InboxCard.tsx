@@ -4,21 +4,6 @@ import { Typography } from '@root/shared/components/atomics/Typography';
 import { Menu, MenuItem, ControlledMenu } from '@root/shared/components';
 import { useRef, useState } from 'react';
 import { useClickAway } from 'react-use';
-import styled from 'styled-components';
-
-const StyledCard = styled(Card)`
-  min-height: 8rem;
-  min-width: 8rem;
-  background-color: #fff9c4; // Post-it note color?
-  transform: rotate(-1deg);
-  transition: transform 0.2s;
-  cursor: pointer;
-
-  &:hover {
-    transform: rotate(0deg) scale(1.05);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  }
-`;
 
 /**
  * Interact with a single Card in Inbox
@@ -51,7 +36,11 @@ export function InboxCard({ name, data, onMenuClicks, ...optionals }) {
 
   return (
     <div ref={cardActionRef} className="relative">
-      <StyledCard onClick={handleClick} className={'flex flex-col justify-between p-4 relative'}>
+      <Card
+        onClick={handleClick}
+        className={'flex flex-col justify-between p-4 relative transition-transform cursor-pointer hover:rotate-0 hover:scale-105 hover:shadow-md'}
+        style={{ minHeight: '8rem', minWidth: '8rem', backgroundColor: '#fff9c4', transform: 'rotate(-1deg)', transition: 'transform 0.2s' }}
+      >
         <div className="absolute top-2 right-2 p-1 rounded-full hover:bg-black/5" onClick={handleMenuTrigger}>
           <Icon name="ellipsis-v" size={12} className="text-gray-500" />
         </div>
@@ -59,7 +48,7 @@ export function InboxCard({ name, data, onMenuClicks, ...optionals }) {
         <div className='flex justify-end mt-2' >
           <Icon name={'file-alt'} className="text-gray-400" />
         </div>
-      </StyledCard>
+      </Card>
 
       <Menu anchorEl={cardActionRef.current} open={isOpen} onClose={() => setOpen(false)}>
         <MenuItem onClick={() => { onEdit && onEdit(data); setOpen(false); }}>Edit / View</MenuItem>

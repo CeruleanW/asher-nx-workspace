@@ -5,13 +5,7 @@ import { isFilledArray } from '@root/shared/utils';
 import { Menu, MenuItem, ControlledMenu } from '@root/shared/components';
 import { useRef, useState } from 'react';
 import { useClickAway } from 'react-use';
-import styled from 'styled-components';
 import { BoxResponseDTO } from '../../features/idea-server';
-
-const StyledCard = styled(Card)`
-  min-height: 8rem;
-  min-width: 8rem;
-`;
 
 
 
@@ -50,7 +44,7 @@ export function BoxCard({ name, data, onMenuClicks, ...optionals }) {
   return (
     <>
       <div ref={cardActionRef} data-cy={'box-card-container'}>
-        <StyledCard onClick={handleClick} data-cy={'box-card'} className={'flex flex-col justify-between p-4'}>
+        <Card onClick={handleClick} data-cy={'box-card'} className={'flex flex-col justify-between p-4'} style={{ minHeight: '8rem', minWidth: '8rem' }}>
           <Typography className='text-lg font-semibold' >{name}</Typography>
           <div className='flex justify-end' >
             {isShared ? <Icon name={'fa-solid fa-users'} /> : null}
@@ -59,7 +53,7 @@ export function BoxCard({ name, data, onMenuClicks, ...optionals }) {
               <Icon name={'note'} />
             </div>
           </div>
-        </StyledCard>
+        </Card>
         <Menu anchorEl={cardActionRef.current} open={isOpen} onClose={() => setOpen(false)}>
           <MenuItem onClick={() => onDraw && onDraw(_id)} disabled={!isFilledArray(cards)} >Draw</MenuItem>
           <MenuItem onClick={() => onShake && onShake(_id)} disabled={!cards || cards.length <= 1} >Shake</MenuItem>
