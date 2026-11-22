@@ -4,7 +4,7 @@ import { Link } from '@root/shared/components/atomics';
 const iconSize = 26;
 
 export function SocialMedia(props) {
-  const { email = 'yyang.techie@gmail.com', linkedIn = 'https://www.linkedin.com/in/yiyang-tech/', facebook = 'https://www.facebook.com/fongeey/', ...rest } = props;
+  const { email = 'ashery.tech@gmail.com', linkedIn = 'https://www.linkedin.com/in/yiyang-tech/', facebook = 'https://www.facebook.com/fongeey/', ...rest } = props;
   // const shareUrl = window.location.href;
 
   return (
