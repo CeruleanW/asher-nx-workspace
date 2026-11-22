@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 // MUI v5 ExtendButtonBase is not assignable to styled-components' type; cast to any per migration spec any-policy
+// font-family comes from the theme's MuiTab styleOverrides (Theme.tsx)
 const StyledTab = styled(Tab as any)`
-  font-family: 'Raleway', sans-serif;
   width: 9rem;
 `;
 

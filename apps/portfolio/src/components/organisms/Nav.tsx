@@ -8,21 +8,18 @@ import '../../styles/components/link.scss';
 
 export default function Nav({ routes, children, pageTitles }) {
   const allTabs = routes;
-  const isSmDown = useMedia('(max-width: 600px)');
+  // Pre-migration semantics (MUI v4 Hidden smDown / Hidden mdUp):
+  // tabs visible at md and up (>= 960px), hamburger menu below 960px.
   const isMdUp = useMedia('(min-width: 960px)');
 
   return (
-    <AppBar position='static' sx={[{
-      '&.MuiPaper-root': {
-        backgroundColor: '#2C2C2C',
-      },
-    }]} >
+    <AppBar position='static'>
       <Toolbar disableGutters>
         <p className={`nav-title px-4 no-decoration`}>
           <Link to={allTabs[0]}>&#10023; Asher.Y</Link>
         </p>
         <div className='flex-1'></div>
-        {isSmDown ? null : children}
+        {isMdUp ? children : null}
         {isMdUp ? null : <Menu routes={allTabs} pageTitles={pageTitles} />}
       </Toolbar>
     </AppBar>
