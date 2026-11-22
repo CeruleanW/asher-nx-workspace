@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { getStoredSession, refreshSession, signIn, signOut, SupabaseSession } from './auth';
-import { getSupabaseConfig } from './config';
+import { getSupabaseConfig, logSupabaseConfig } from './config';
 
 const SessionContext = createContext<SupabaseSession | null>(null);
 export const useSupabaseSession = () => useContext(SessionContext);
@@ -18,6 +18,7 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
       const stored = getStoredSession();
       if (!stored) {
         try { getSupabaseConfig(); } catch (err) {
+          logSupabaseConfig();
           setError(err instanceof Error ? err.message : 'Supabase configuration is invalid.');
         }
         setLoading(false);
@@ -25,6 +26,7 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
       }
       refreshSession(stored).then(setSession).finally(() => setLoading(false));
     } catch (err) {
+      logSupabaseConfig();
       setError(err instanceof Error ? err.message : 'Supabase configuration is invalid.');
       setLoading(false);
     }
@@ -63,7 +65,7 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
   }
 
   let configError = '';
-  try { getSupabaseConfig(); } catch (err) { configError = err instanceof Error ? err.message : 'Supabase is not configured.'; }
+  try { getSupabaseConfig(); } catch (err) { logSupabaseConfig(); configError = err instanceof Error ? err.message : 'Supabase is not configured.'; }
   return <main style={{ maxWidth: 420, margin: '10vh auto', padding: 24 }}>
     <h1>Sign in to view this portfolio</h1>
     <p>Personal data is stored in a private Supabase bucket.</p>
