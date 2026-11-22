@@ -8,6 +8,7 @@ import { Resume } from '../pages/Resume';
 import { PAGE_ROUTES } from './constants';
 import { lazy } from 'react';
 import { Contact } from '../pages/Contact';
+import { AuthGate } from '../features/supabase/AuthGate';
 
 const AboutMe = lazy(() => import('../pages/AboutMe'));
 
@@ -39,7 +40,7 @@ export function MainRoutesGroup() {
         />
         <Route
           path={PAGE_ROUTES[4]}
-          element={<Resume />}
+          element={<AuthGate><Resume /></AuthGate>}
         />
       </Routes>
     </AnimatePresence>

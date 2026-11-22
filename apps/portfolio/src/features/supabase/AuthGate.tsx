@@ -2,34 +2,39 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { getStoredSession, refreshSession, signIn, signOut, SupabaseSession } from './auth';
 import { getSupabaseConfig, logSupabaseConfig } from './config';
 
-const SessionContext = createContext<SupabaseSession | null>(null);
-export const useSupabaseSession = () => useContext(SessionContext);
+interface SupabaseAuthState {
+  session: SupabaseSession | null;
+  initializing: boolean;
+  setSession: (session: SupabaseSession | null) => void;
+}
 
-export function AuthGate({ children }: { children: React.ReactNode }) {
+const AuthContext = createContext<SupabaseAuthState | null>(null);
+
+/**
+ * Session for the current visitor, or null when signed out or when no
+ * SessionProvider is mounted above the consumer.
+ */
+export const useSupabaseSession = (): SupabaseSession | null =>
+  useContext(AuthContext)?.session ?? null;
+
+/**
+ * Holds the Supabase session for the whole app and renders children
+ * unconditionally. The sign-in requirement is enforced per route by
+ * <AuthGate>, not here.
+ */
+export function SessionProvider({ children }: { children: React.ReactNode }) {
   const [session, setSession] = useState<SupabaseSession | null>(null);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [submitting, setSubmitting] = useState(false);
+  const [initializing, setInitializing] = useState(true);
 
   useEffect(() => {
-    try {
-      const stored = getStoredSession();
-      if (!stored) {
-        try { getSupabaseConfig(); } catch (err) {
-          logSupabaseConfig();
-          setError(err instanceof Error ? err.message : 'Supabase configuration is invalid.');
-        }
-        setLoading(false);
-        return;
-      }
-      refreshSession(stored).then(setSession).finally(() => setLoading(false));
-    } catch (err) {
-      logSupabaseConfig();
-      setError(err instanceof Error ? err.message : 'Supabase configuration is invalid.');
-      setLoading(false);
+    const stored = getStoredSession();
+    if (!stored) {
+      setInitializing(false);
+      return;
     }
+    refreshSession(stored)
+      .then(setSession)
+      .finally(() => setInitializing(false));
   }, []);
 
   useEffect(() => {
@@ -42,6 +47,32 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
     }, 30_000);
     return () => window.clearInterval(refreshTimer);
   }, [session]);
+
+  return <AuthContext.Provider value={{ session, initializing, setSession }}>{children}</AuthContext.Provider>;
+}
+
+/**
+ * Blocks its children behind Supabase sign-in. Wrap only the routes that
+ * need protection (currently the Resume page).
+ */
+export function AuthGate({ children }: { children: React.ReactNode }) {
+  const auth = useContext(AuthContext);
+  const session = auth?.session ?? null;
+  const setSession = auth?.setSession ?? (() => {});
+  const initializing = auth?.initializing ?? false;
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  const [configError, setConfigError] = useState('');
+
+  useEffect(() => {
+    if (session || initializing) return;
+    try { getSupabaseConfig(); } catch (err) {
+      logSupabaseConfig();
+      setConfigError(err instanceof Error ? err.message : 'Supabase is not configured.');
+    }
+  }, [session, initializing]);
 
   const handleSignIn = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -56,16 +87,14 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
     }
   };
 
-  if (loading) return <p role="status">Checking sign-in…</p>;
+  if (initializing) return <p role="status">Checking sign-in…</p>;
   if (session) {
-    return <SessionContext.Provider value={session}>
+    return <>
       <button type="button" onClick={() => { void signOut(session); setSession(null); }}>Sign out</button>
       {children}
-    </SessionContext.Provider>;
+    </>;
   }
 
-  let configError = '';
-  try { getSupabaseConfig(); } catch (err) { logSupabaseConfig(); configError = err instanceof Error ? err.message : 'Supabase is not configured.'; }
   return <main style={{ maxWidth: 420, margin: '10vh auto', padding: 24 }}>
     <h1>Sign in to view this portfolio</h1>
     <p>Personal data is stored in a private Supabase bucket.</p>

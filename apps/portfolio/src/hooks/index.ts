@@ -49,5 +49,7 @@ export function usePersonalData(): { data: any; error: any; isLoading: boolean }
     session ? [PERSONAL_DATA_LINK, session.access_token] : null,
     () => fetchPersonalData(session as SupabaseSession)
   );
-  return { data, error, isLoading: !data && !error };
+  // Without a session nothing is fetched (SWR key is null): that is a plain
+  // "no data" state for public pages like Contact, not a loading state.
+  return { data, error, isLoading: !!session && !data && !error };
 }
