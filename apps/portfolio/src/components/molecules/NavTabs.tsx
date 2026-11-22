@@ -34,7 +34,7 @@ export default function NavTabs({ routes, value, labels }: NavTabsProps) {
   ));
 
   return (
-    <Tabs value={value} centered aria-label="navigation tabs">
+    <Tabs value={value} centered textColor="inherit" aria-label="navigation tabs">
       {renderTabs}
     </Tabs>
   );
